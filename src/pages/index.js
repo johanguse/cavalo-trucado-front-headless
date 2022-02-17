@@ -9,7 +9,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
+      <main className="flex flex-col items-center justify-center flex-1 w-full px-20 text-center">
         <StyledButton>In Style</StyledButton>
         <br />
         <TailwindButton>In Tailwind Style</TailwindButton>
@@ -44,13 +44,5 @@ const TailwindButton = tw.button`
 
 const ConditionalButton = styled.button(({ isRed }) => [
   isRed ? tw`bg-red-500 hover:bg-red-700` : tw`bg-blue-500 hover:bg-blue-500`,
-  tw`
-    text-white
-    font-bold
-    py-2
-    px-4
-    border
-    border-black
-    rounded
-  `,
+  tw`px-4 py-2 font-bold text-white border border-black rounded `,
 ]);
