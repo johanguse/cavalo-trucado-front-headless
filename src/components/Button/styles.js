@@ -1,7 +1,7 @@
 import tw, { styled } from "twin.macro";
 
 // still works despite importing from twin.macro
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
   background: red;
   color: white;
   font-size: 1em;
@@ -10,7 +10,7 @@ const StyledButton = styled.button`
   border: 2px solid black;
 `;
 
-const TailwindButton = tw.button`
+export const TailwindButton = tw.button`
   bg-red-500
   hover:bg-red-700
   text-white
@@ -22,7 +22,7 @@ const TailwindButton = tw.button`
   rounded
 `;
 
-const ConditionalButton = styled.button(({ isRed }) => [
+export const ConditionalButton = styled.button(({ isRed }) => [
   isRed ? tw`bg-red-500 hover:bg-red-700` : tw`bg-blue-500 hover:bg-blue-500`,
   tw`px-4 py-2 font-bold text-white border border-black rounded `,
 ]);
