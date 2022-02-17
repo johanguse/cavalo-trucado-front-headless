@@ -1,6 +1,6 @@
 import Head from "next/head";
 import tw, { styled } from "twin.macro";
-import Button from "../components/Button";
+import Button from "@/components/Button";
 
 export default function Home() {
   return (
