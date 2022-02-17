@@ -1,8 +1,10 @@
 import Head from "next/head";
+import { gql } from "@apollo/client";
+import client from "@/lib/apollo-client";
 import tw, { styled } from "twin.macro";
 import Button from "@/components/Button";
 
-export default function Home() {
+export default function Home({ countries }) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
@@ -18,9 +20,40 @@ export default function Home() {
         <TailwindButton>In Tailwind Style</TailwindButton>
         <br />
         <ConditionalButton isRed={true}>Conditional Tailwind</ConditionalButton>
+        <br />
+        <div>
+          {countries.map((country) => (
+            <div key={country.code}>
+              <h3>{country.name}</h3>
+              <p>
+                {country.code} - {country.emoji}
+              </p>
+            </div>
+          ))}
+        </div>
       </main>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const { data } = await client.query({
+    query: gql`
+      query Countries {
+        countries {
+          code
+          name
+          emoji
+        }
+      }
+    `,
+  });
+
+  return {
+    props: {
+      countries: data.countries.slice(0, 4),
+    },
+  };
 }
 
 // still works despite importing from twin.macro
