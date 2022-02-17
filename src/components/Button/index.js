@@ -1,5 +1,6 @@
-import React from 'react';
-import { StyledButton, TailwindButton } from "./styles";
+import tw, { styled } from "twin.macro";
+import { StyledButton, TailwindButton } from "./styles"
+
 
 function Button() {
   return (

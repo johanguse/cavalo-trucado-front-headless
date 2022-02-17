@@ -1,5 +1,6 @@
 import Head from "next/head";
 import tw, { styled } from "twin.macro";
+import Button from "../components/Button";
 
 export default function Home() {
   return (
@@ -10,6 +11,8 @@ export default function Home() {
       </Head>
 
       <main className="flex flex-col items-center justify-center flex-1 w-full px-20 text-center">
+        <Button />
+        <br />
         <StyledButton>In Style</StyledButton>
         <br />
         <TailwindButton>In Tailwind Style</TailwindButton>
