@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Head from "next/head";
 import "tailwindcss/tailwind.css";
 
@@ -8,6 +9,7 @@ function MyApp({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Component {...pageProps} />
+      <Footer />
     </>
   );
 }
