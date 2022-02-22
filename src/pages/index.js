@@ -4,7 +4,8 @@ import client from "@/lib/apollo-client";
 import tw, { styled } from "twin.macro";
 import Button from "@/components/Button";
 
-export default function Home({ countries }) {
+export default function Home({ vehicles }) {
+  //console.log(vehicles)
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
@@ -22,12 +23,10 @@ export default function Home({ countries }) {
         <ConditionalButton isRed={true}>Conditional Tailwind</ConditionalButton>
         <br />
         <div>
-          {countries.map((country) => (
-            <div key={country.code}>
-              <h3>{country.name}</h3>
-              <p>
-                {country.code} - {country.emoji}
-              </p>
+          {vehicles.nodes.map((vehicle) => (
+            <div key={vehicle.id}>
+              <h3>{vehicle.vehicle_infos.vehicleModelName}</h3>
+              <p>{vehicle.slug}</p>
             </div>
           ))}
         </div>
@@ -39,11 +38,20 @@ export default function Home({ countries }) {
 export async function getStaticProps() {
   const { data } = await client.query({
     query: gql`
-      query Countries {
-        countries {
-          code
-          name
-          emoji
+      query indexQuery {
+        vehicles {
+          nodes {
+            vehicle_infos {
+              vehicleModelName
+            }
+            slug
+            id
+            brands {
+              nodes {
+                name
+              }
+            }
+          }
         }
       }
     `,
@@ -51,7 +59,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      countries: data.countries.slice(0, 4),
+      vehicles: data.vehicles,
     },
   };
 }
