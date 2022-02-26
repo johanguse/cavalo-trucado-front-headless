@@ -3,6 +3,7 @@ import { gql } from "@apollo/client";
 import client from "@/lib/apollo-client";
 import tw, { styled } from "twin.macro";
 import Button from "@/components/Button";
+import Navbar from "@/components/Navbar";
 
 export default function Home({ countries }) {
   return (
@@ -12,7 +13,9 @@ export default function Home({ countries }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col items-center justify-center flex-1 w-full px-20 text-center">
+      <Navbar />
+
+      <main className="flex flex-col items-center justify-center flex-1 w-full px-20 text-center bg-gray-100">
         <Button />
         <br />
         <StyledButton>In Style</StyledButton>
