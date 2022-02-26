@@ -11,12 +11,11 @@ export default function Home({ vehicles }) {
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
         <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Navbar />
 
-      <main className="flex flex-col items-center justify-center flex-1 w-full px-20 text-center bg-gray-100">
+      <main className="flex flex-col items-center justify-center flex-1 w-full px-20 py-8 text-center bg-gray-100">
         <Button />
         <br />
         <StyledButton>In Style</StyledButton>
