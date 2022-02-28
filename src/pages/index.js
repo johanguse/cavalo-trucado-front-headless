@@ -1,6 +1,9 @@
 import Head from "next/head";
+import Link from "next/link";
+import Image from "next/image";
 import { gql } from "@apollo/client";
 import client from "@/lib/apollo-client";
+import { INDEX_QUERY } from "@/queries/index";
 import tw, { styled } from "twin.macro";
 import Button from "@/components/Button";
 import Navbar from "@/components/Navbar";
@@ -8,14 +11,40 @@ import Navbar from "@/components/Navbar";
 export default function Home({ vehicles }) {
   //console.log(vehicles)
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <>
       <Head>
         <title>Create Next App</title>
       </Head>
-
       <Navbar />
+      <main className="flex items-center justify-center flex-1 w-full px-20 py-8 text-center bg-gray-100">
 
-      <main className="flex flex-col items-center justify-center flex-1 w-full px-20 py-8 text-center bg-gray-100">
+        {vehicles.nodes.map((vehicle) => (
+
+          <div className="w-1/3 mx-3 text-center bg-white border border-gray-200 rounded-lg hover:shadow-lg align-center" key={vehicle.vehicleId}>
+            <div className="w-full">
+              <Image
+                className="rounded-t-lg"
+                src={vehicle.vehicle_infos.vehicleMainPhoto.sourceUrl}
+                alt={vehicle.vehicle_infos.vehicleModelName}
+                width="225"
+                height="300"
+                objectFit="cover"
+              />
+            </div>
+            <h3>{vehicle.vehicle_infos.vehicleModelName}</h3>
+            <p>{vehicle.vehicleId}</p>
+            {vehicle.brands.nodes.map((brand) => (
+              <div key={brand.brandId}><p>{brand.name}</p></div>
+            ))}
+            <br />
+            <Link href={`/caminhao/${encodeURIComponent(vehicle.slug)}`}>Link</Link>
+            <br /><br />
+          </div>
+        ))}
+
+
+      </main>
+      <div>
         <Button />
         <br />
         <StyledButton>In Style</StyledButton>
@@ -24,39 +53,14 @@ export default function Home({ vehicles }) {
         <br />
         <ConditionalButton isRed={true}>Conditional Tailwind</ConditionalButton>
         <br />
-        <div>
-          {vehicles.nodes.map((vehicle) => (
-            <div key={vehicle.id}>
-              <h3>{vehicle.vehicle_infos.vehicleModelName}</h3>
-              <p>{vehicle.slug}</p>
-            </div>
-          ))}
-        </div>
-      </main>
-    </div>
+      </div>
+    </>
   );
 }
 
 export async function getStaticProps() {
   const { data } = await client.query({
-    query: gql`
-      query indexQuery {
-        vehicles {
-          nodes {
-            vehicle_infos {
-              vehicleModelName
-            }
-            slug
-            id
-            brands {
-              nodes {
-                name
-              }
-            }
-          }
-        }
-      }
-    `,
+    query: INDEX_QUERY
   });
 
   return {
