@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import Head from "next/head";
+import NextNProgress from "nextjs-progressbar";
 import "tailwindcss/tailwind.css";
 
 function MyApp({ Component, pageProps }) {
@@ -25,6 +26,7 @@ function MyApp({ Component, pageProps }) {
         <meta name="msapplication-TileImage" content="favicons/ms-icon-144x144.png" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
+      <NextNProgress color="#8e2620" />
       <Component {...pageProps} />
       <Footer />
     </>

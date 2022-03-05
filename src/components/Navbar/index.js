@@ -13,8 +13,8 @@ function Navbar() {
             <Image src={Logo} width="200" height="70" alt="Logo Cavalo Trucado" className="w-8 h-8 mr-2" />
 
             <nav className="hidden space-x-10 text-sm font-medium lg:flex">
-              <Link href="">Estoque</Link>
-              <Link href="">Contato</Link>
+              <Link href="/">Estoque</Link>
+              <Link href="/">Contato</Link>
             </nav>
           </div>
 
