@@ -1,15 +1,24 @@
 import { gql } from '@apollo/client';
 
 export default gql`
-  GET_VEHICLE($id: ID = "140") {
-    vehicle(id: $id, idType: DATABASE_ID) {
-      slug
-      vehicleId
-      vehicle_infos {
-        vehicleModelName
-        vehiclePrice
-        vehicleYear
+query($slug: String = "") {
+  vehicleBy(slug: $slug) {
+    slug
+    vehicleId
+    vehicle_infos {
+      vehicleModelName
+      vehicleMainPhoto {
+        sourceUrl(size: MEDIUM)
+      }
+    }
+    brands {
+      edges {
+        node {
+          name
+          slug
+        }
       }
     }
   }
+}
 `;
