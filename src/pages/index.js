@@ -13,36 +13,39 @@ export default function Home({ vehicles }) {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>Cavalo Trucado - Compra e venda de caminhões</title>
+        <meta name="description" content="Especializado na compra e venda de caminhões em todo Brasil." />
+        <meta name="keywords" content="compra, venda, caminhões, carretas, cavalos" />
       </Head>
       <Navbar />
-      <main className="flex items-center justify-center flex-1 w-full px-20 py-8 text-center bg-gray-100">
+      <main className="flex items-center justify-center flex-1 w-full px-2 py-8 bg-gray-100">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-6 max-w-7xl sm:px-4 lg:px-8">
 
-        {vehicles.nodes.map((vehicle) => (
+          {vehicles.nodes.map((vehicle) => (
 
-          <div className="w-1/3 mx-3 text-center bg-white border border-gray-200 rounded-lg hover:shadow-lg align-center" key={vehicle.vehicleId}>
-            <div className="w-full">
-              <Image
-                className="rounded-t-lg"
-                src={vehicle.vehicle_infos.vehicleMainPhoto.sourceUrl}
-                alt={vehicle.vehicle_infos.vehicleModelName}
-                width="225"
-                height="300"
-                objectFit="cover"
-              />
+            <div className="text-center bg-white border border-gray-200 rounded-lg hover:shadow-lg align-center" key={vehicle.vehicleId}>
+              <div className="w-full">
+                <Image
+                  className="rounded-t-lg"
+                  src={vehicle.vehicle_infos.vehicleMainPhoto.sourceUrl}
+                  alt={vehicle.vehicle_infos.vehicleModelName}
+                  width="480"
+                  height="560"
+                  objectFit="cover"
+                />
+              </div>
+              <h3>{vehicle.vehicle_infos.vehicleModelName}</h3>
+              <p>{vehicle.vehicleId}</p>
+              {vehicle.brands.nodes.map((brand) => (
+                <div key={brand.brandId}><p>{brand.name}</p></div>
+              ))}
+              <br />
+              <Link href={`/caminhao/${encodeURIComponent(vehicle.slug)}`}>Link</Link>
+              <br /><br />
             </div>
-            <h3>{vehicle.vehicle_infos.vehicleModelName}</h3>
-            <p>{vehicle.vehicleId}</p>
-            {vehicle.brands.nodes.map((brand) => (
-              <div key={brand.brandId}><p>{brand.name}</p></div>
-            ))}
-            <br />
-            <Link href={`/caminhao/${encodeURIComponent(vehicle.slug)}`}>Link</Link>
-            <br /><br />
-          </div>
-        ))}
+          ))}
 
-
+        </div>
       </main>
       <div>
         <Button />
