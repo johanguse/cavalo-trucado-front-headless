@@ -23,7 +23,7 @@ export default function Home({ vehicles }) {
 
           {vehicles.nodes.map((vehicle) => (
 
-            <div className="text-center bg-white border border-gray-200 rounded-lg hover:shadow-lg align-center" key={vehicle.vehicleId}>
+            <div className="text-center transition duration-300 bg-white border border-gray-200 rounded-lg hover:shadow-md align-center" key={vehicle.vehicleId}>
               <div className="w-full">
                 <Image
                   className="rounded-t-lg"
