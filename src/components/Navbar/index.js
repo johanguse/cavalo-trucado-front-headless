@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Link from 'next/link'
 import Image from 'next/image'
 import Logo from '../../assets/logo_cavalo-trucado.png'
@@ -5,6 +6,22 @@ import WhatsLogo from '../../assets/whatsapp.svg'
 import { Container } from "./styles";
 
 function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const genericHamburgerLine = `h-1 w-6 my-1 rounded-full bg-black transition ease transform duration-300`;
+
+  const handlerMenu = () => {
+
+    if (isOpen === true) {
+      document.body.style.overflow = 'unset';
+      return setIsOpen(false);
+    }
+
+    setIsOpen(true);
+    if (typeof window != 'undefined' && window.document) {
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
   return (
     <header className="w-full">
       <div className="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -12,7 +29,7 @@ function Navbar() {
           <div className="flex items-center space-x-10">
             <Image src={Logo} width="200" height="70" alt="Logo Cavalo Trucado" className="w-8 h-8 mr-2" />
 
-            <nav className="hidden space-x-10 text-sm font-medium lg:flex">
+            <nav className="hidden space-x-10 text-sm font-medium md:flex">
               <Link href="/">Estoque</Link>
               <Link href="/">Contato</Link>
             </nav>
@@ -35,21 +52,43 @@ function Navbar() {
             </div>
           </div>
 
-          <div className="sm:hidden">
-            <button className="p-2 text-gray-100 bg-gray-800 rounded-lg" type="button">
-              <span className="sr-only">Open menu</span>
-
-              <svg
-                aria-hidden="true"
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M4 6h16M4 12h16M4 18h16" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-              </svg>
+          <div className="md:hidden">
+            <button
+              className="flex flex-col items-center justify-center w-12 h-12 border-2 border-red-300 rounded group"
+              onClick={() => handlerMenu()}
+            >
+              <div
+                className={`${genericHamburgerLine} ${isOpen
+                  ? "rotate-45 translate-y-3 opacity-50 group-hover:opacity-100"
+                  : "opacity-50 group-hover:opacity-100"
+                  }`}
+              />
+              <div
+                className={`${genericHamburgerLine} ${isOpen ? "opacity-0" : "opacity-50 group-hover:opacity-100"
+                  }`}
+              />
+              <div
+                className={`${genericHamburgerLine} ${isOpen
+                  ? "-rotate-45 -translate-y-3 opacity-50 group-hover:opacity-100"
+                  : "opacity-50 group-hover:opacity-100"
+                  }`}
+              />
             </button>
+            <div className={isOpen ? "showMenuNav z-50 top-24 left-0 right-0 h-screen absolute bg-white" : "hideMenuNav hidden"}>
+
+              <ul className="flex flex-col items-center justify-between min-h-[250px]">
+                <li className="my-8 uppercase border-b border-gray-400">
+                  <a href="/about">About</a>
+                </li>
+                <li className="my-8 uppercase border-b border-gray-400">
+                  <a href="/portfolio">Portfolio</a>
+                </li>
+                <li className="my-8 uppercase border-b border-gray-400">
+                  <a href="/contact">Contact</a>
+                </li>
+              </ul>
+
+            </div>
           </div>
         </div>
       </div>
