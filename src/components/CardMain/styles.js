@@ -1,14 +1,13 @@
 import tw from "twin.macro";
 
 export const BgCard = tw.div`
-  bg-red-500
-  hover:bg-red-700
-  text-white
-  font-bold
-  py-2
-  px-4
-  border
-  border-black
-  rounded
-  mb-10
+  transition duration-300 bg-white border border-gray-200 rounded-lg hover:shadow-md
+`;
+
+export const ImgCard = tw.div`
+  w-full
+`;
+
+export const TextCard = tw.div`
+  p-4
 `;
