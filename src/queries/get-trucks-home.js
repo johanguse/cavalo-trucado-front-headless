@@ -8,6 +8,11 @@ export default gql`
         vehicleId
         vehicle_infos {
           vehicleModelName
+          vehiclePrice
+          vehicleYear
+          vehicleShortText1
+          vehicleShortText2
+          vehicleShortText3
           vehicleMainPhoto {
             sourceUrl(size: MEDIUM)
           }

@@ -5,11 +5,11 @@ import { gql } from "@apollo/client";
 import client from "@/lib/apollo-client";
 import { INDEX_QUERY } from "@/queries/index";
 import tw, { styled } from "twin.macro";
+import CardMain from "@/components/CardMain";
 import Button from "@/components/Button";
 import Navbar from "@/components/Navbar";
 
 export default function Home({ vehicles }) {
-  //console.log(vehicles)
   return (
     <>
       <Head>
@@ -18,35 +18,7 @@ export default function Home({ vehicles }) {
         <meta name="keywords" content="compra, venda, caminhões, carretas, cavalos" />
       </Head>
       <Navbar />
-      <main className="flex items-center justify-center flex-1 w-full px-2 py-8 bg-gray-100">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-6 max-w-7xl sm:px-4 lg:px-8">
-
-          {vehicles.nodes.map((vehicle) => (
-
-            <div className="text-center transition duration-300 bg-white border border-gray-200 rounded-lg hover:shadow-md align-center" key={vehicle.vehicleId}>
-              <div className="w-full">
-                <Image
-                  className="rounded-t-lg"
-                  src={vehicle.vehicle_infos.vehicleMainPhoto.sourceUrl}
-                  alt={vehicle.vehicle_infos.vehicleModelName}
-                  width="480"
-                  height="560"
-                  objectFit="cover"
-                />
-              </div>
-              <h3>{vehicle.vehicle_infos.vehicleModelName}</h3>
-              <p>{vehicle.vehicleId}</p>
-              {vehicle.brands.nodes.map((brand) => (
-                <div key={brand.brandId}><p>{brand.name}</p></div>
-              ))}
-              <br />
-              <Link href={`/caminhao/${encodeURIComponent(vehicle.slug)}`}>Link</Link>
-              <br /><br />
-            </div>
-          ))}
-
-        </div>
-      </main>
+      <CardMain vehicles={vehicles.nodes} />
       <div>
         <Button />
         <br />
