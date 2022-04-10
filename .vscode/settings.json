@@ -11,5 +11,8 @@
     "tw\\.[^`]+`([^`]*)`", // tw.xxx<xxx>`...`
     "tw\\(.*?\\).*?`([^`]*)" // tw(Component)<xxx>`...`
   ],
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  }
 }
