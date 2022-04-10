@@ -6,6 +6,7 @@ export const BgCard = tw.div`
 
 export const ImgCard = tw.div`
   w-full
+  cursor-pointer
 `;
 
 export const TextCard = tw.div`
