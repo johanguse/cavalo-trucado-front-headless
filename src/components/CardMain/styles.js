@@ -10,5 +10,5 @@ export const ImgCard = tw.div`
 `;
 
 export const TextCard = tw.div`
-  p-4
+  px-4 py-2
 `;
