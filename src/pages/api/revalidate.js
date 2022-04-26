@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   if (req.query.secret !== process.env.MY_SECRET_TOKEN) {
     return res.status(401).json({ message: 'Invalid token' });
   }*/
-  console.log(process.env.HOSTNAME + '/' + req.query.slug);
+  console.log(process.env.NEXT_PUBLIC_BASEURL + '/' + req.query.slug);
 
   try {
     await res.unstable_revalidate("/");
@@ -12,6 +12,6 @@ export default async function handler(req, res) {
   } catch (err) {
     // If there was an error, Next.js will continue
     // to show the last successfully generated page
-    return res.status(500).send('Error revalidating' + process.env.HOSTNAME);
+    return res.status(500).send('Error revalidating' + process.env.NEXT_PUBLIC_BASEURL);
   }
 }

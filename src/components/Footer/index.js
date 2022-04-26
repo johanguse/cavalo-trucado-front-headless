@@ -2,7 +2,7 @@ import { Container } from "./styles";
 
 function Footer() {
   return (
-    <footer className="text-center">
+    <footer className="text-center border-t border-gray-200">
       <div className="max-w-screen-xl px-4 py-12 mx-auto sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto space-y-6">
           <div className="flex justify-center space-x-6">
