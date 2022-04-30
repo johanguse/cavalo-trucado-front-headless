@@ -27,7 +27,8 @@ function Navbar() {
       <div className="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-3">
           <div className="flex items-center space-x-10">
-            <Image src={Logo} width="200" height="70" alt="Logo Cavalo Trucado" className="w-8 h-8 mr-2" />
+
+            <Image src={Logo} width="200" height="70" alt="Logo Cavalo Trucado" className="w-8 h-8 mr-2 cursor-pointer" />
 
             <nav className="hidden space-x-10 text-sm font-medium md:flex">
               <Link href="/">Estoque</Link>
