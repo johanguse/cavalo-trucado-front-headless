@@ -1,12 +1,11 @@
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
 import client from "@/lib/apollo-client";
 import { INDEX_QUERY } from "@/queries/index";
 import CardMain from "@/components/CardMain";
 import Navbar from "@/components/Navbar";
 
-export default function Home({ vehicles }) {
+export default function HomePage({ vehicles }) {
   return (
     <>
       <Head>
