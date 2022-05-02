@@ -3,7 +3,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Logo from '../../assets/logo_cavalo-trucado.png'
 import WhatsLogo from '../../assets/whatsapp.svg'
-import { Container } from "./styles";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);

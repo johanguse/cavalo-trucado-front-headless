@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import IconPointMap from '../../assets/icon_mappoint.svg'
-import { BgCard, ImgCard, TextCard } from "./styles";
 
 const Truck = ({ vehicle }) => {
   const brandName = vehicle.brands.nodes[0].name;
@@ -12,9 +11,9 @@ const Truck = ({ vehicle }) => {
   const yearModel = vehicle.vehicle_infos.vehicleYearModel;
 
   return (
-    <BgCard key={vehicle.vehicleId}>
+    <div key={vehicle.vehicleId} className="transition duration-300 bg-white border border-gray-200 rounded-lg hover:shadow-md">
       <Link href={`/caminhao/${encodeURIComponent(vehicle.slug)}`}>
-        <ImgCard>
+        <div className="w-full cursor-pointer">
           <Image
             className="rounded-t-lg"
             src={vehicle.vehicle_infos.vehicleMainPhoto.sourceUrl}
@@ -23,9 +22,9 @@ const Truck = ({ vehicle }) => {
             height="560"
             objectFit="cover"
           />
-        </ImgCard>
+        </div>
       </Link>
-      <TextCard>
+      <div className="px-4 py-2">
         <Link href={`/caminhao/${encodeURIComponent(vehicle.slug)}`}>
           <h2 className="mb-2 text-2xl cursor-pointer">
             <span>{brandName}</span>
@@ -58,8 +57,8 @@ const Truck = ({ vehicle }) => {
             <p>{state} </p>
           }
         </div>
-      </TextCard>
-    </BgCard >
+      </div>
+    </div >
   )
 }
 
