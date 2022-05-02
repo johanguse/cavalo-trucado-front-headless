@@ -1,5 +1,3 @@
-import { Container } from "./styles";
-
 function Footer() {
   return (
     <footer className="text-center border-t border-gray-200">

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { BgCard, ImgCard, TextCard } from "./styles";
 import Truck from "./truck";
 
 export default function CardMain({ vehicles }) {
