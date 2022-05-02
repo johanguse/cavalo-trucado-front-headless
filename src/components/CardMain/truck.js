@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import IconPointMap from '../../assets/icon_mappoint.svg'
+import IconPointMap from '@/assets/icon_mappoint.svg'
 
 const Truck = ({ vehicle }) => {
   const brandName = vehicle.brands.nodes[0].name;
@@ -12,7 +12,7 @@ const Truck = ({ vehicle }) => {
 
   return (
     <div key={vehicle.vehicleId} className="transition duration-300 bg-white border border-gray-200 rounded-lg hover:shadow-md">
-      <Link href={`/caminhao/${encodeURIComponent(vehicle.slug)}`}>
+      <Link href={`/${encodeURIComponent(vehicle.slug)}`}>
         <div className="w-full cursor-pointer">
           <Image
             className="rounded-t-lg"
@@ -25,7 +25,7 @@ const Truck = ({ vehicle }) => {
         </div>
       </Link>
       <div className="px-4 py-2">
-        <Link href={`/caminhao/${encodeURIComponent(vehicle.slug)}`}>
+        <Link href={`/${encodeURIComponent(vehicle.slug)}`}>
           <h2 className="mb-2 text-2xl cursor-pointer">
             <span>{brandName}</span>
             <span className="ml-2 text-red-700">{vehicle.vehicle_infos.vehicleModelName}</span>

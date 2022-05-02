@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Link from 'next/link'
 import Image from 'next/image'
-import Logo from '../../assets/logo_cavalo-trucado.png'
-import WhatsLogo from '../../assets/whatsapp.svg'
+import Logo from '@/assets/logo_cavalo-trucado.png'
+import WhatsLogo from '@/assets/whatsapp.svg'
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);

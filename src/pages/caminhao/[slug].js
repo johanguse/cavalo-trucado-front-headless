@@ -4,7 +4,7 @@ import client from "@/lib/apollo-client";
 import { GET_TRUCK } from "@/queries/index";
 import Navbar from "@/components/Navbar";
 import FormTruck from "@/components/FormTruck";
-import IconPointMap from '../../assets/icon_mappoint.svg'
+import IconPointMap from '@/assets/icon_mappoint.svg'
 import { isNonEmptyArray } from "@apollo/client/utilities";
 function TruckPage({ data }) {
   const slug = data.vehicleBy.slug;
@@ -18,7 +18,7 @@ function TruckPage({ data }) {
   const year = data.vehicleBy.vehicle_infos.vehicleYear;
   const yearModel = data.vehicleBy.vehicle_infos.vehicleYearModel;
   const allPhotos = data.vehicleBy.vehicle_infos.vehiclePhotos;
-  const currentEncodeURI = encodeURIComponent(process.env.NEXT_PUBLIC_BASEURL + '/caminhao/' + slug);
+  const currentEncodeURI = encodeURIComponent(process.env.NEXT_PUBLIC_BASEURL + '/' + slug);
 
   return (
     <>
