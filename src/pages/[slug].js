@@ -83,7 +83,7 @@ function TruckPage({ data }) {
                 </div>
                 <div className="flex flex-row mr-3 text-gray-500">
                   <div className="pr-1 icon">
-                    <Image src={IconPointMap} width="18" height="22" />
+                    <Image src={IconPointMap} alt="Localização" width="18" height="22" />
                   </div>
                   {(stateShort == null || stateShort == "NO") ?
                     <p>Brasil</p>

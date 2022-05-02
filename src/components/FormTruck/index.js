@@ -39,6 +39,7 @@ const FormTruck = () => {
                 {...field}
                 {...props}
                 name={field.name}
+                id={field.name}
                 mask={["(", /[1-9]/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]}
                 className={`${meta.error && meta.touched ? "border-red-500" : ""
                   } bg-gray-50 shadow-sm appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:bg-white`}
@@ -52,6 +53,7 @@ const FormTruck = () => {
               } bg-gray-50 shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:bg-white`}
             {...field}
             {...props}
+            id={field.name}
           />
         }
         <ErrorMessage
@@ -76,12 +78,7 @@ const FormTruck = () => {
       }}
     >
       <Form>
-        <div
-          className="container"
-          style={{
-            width: "100%"
-          }}
-        >
+        <div className="container w-full">
           <div className="flex flex-wrap -mx-3">
             <div className="w-full px-3">
               <Input name="name" label="Seu nome" />
@@ -110,6 +107,7 @@ const FormTruck = () => {
                 <div className="w-full px-3">
                   <Field
                     name="message"
+                    id="message"
                     as="textarea"
                     rows="3"
                     className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 border border-gray-200 rounded shadow-sm appearance-none bg-gray-50 focus:outline-none focus:shadow-outline focus:bg-white"
