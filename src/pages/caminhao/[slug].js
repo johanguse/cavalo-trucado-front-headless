@@ -33,7 +33,7 @@ function TruckPage({ data }) {
           <div className="py-3 space-y-6 text-xs text-gray-500 md:space-y-0">Caminhoes <span className="mx-2 text-sm">></span> {brandName} {truckName}</div>
         </div>
       </div>
-      {data ? (
+      {data && (
         <main className="w-full mb-5 bg-white border-t border-gray-200">
           <div className="container flex flex-col items-center justify-center flex-1 mx-auto bg-white max-w-7xl sm:px-6 lg:px-0">
             <div className="p-8 space-y-6 md:space-y-0 md:flex md:gap-6 lg:gap-12">
@@ -49,7 +49,7 @@ function TruckPage({ data }) {
                   loading="eager"
                   priority={true}
                 />
-                {allPhotos ? (
+                {allPhotos && (
                   <div className="flex gap-4 pl-5 mt-4 overflow-x-hidden lg:grid lg:grid-cols-3 lg:px-0">
                     {allPhotos.map((photoItem, index) => {
                       return (
@@ -64,8 +64,6 @@ function TruckPage({ data }) {
                       )
                     })}
                   </div>
-                ) : (
-                  null
                 )}
               </div>
               <div className="md:7/12 lg:w-6/12">
@@ -96,14 +94,13 @@ function TruckPage({ data }) {
                   <span className="mr-2">{data.vehicleBy.vehicle_infos.vehicleShortText2}</span>
                   <span className="mr-2">{data.vehicleBy.vehicle_infos.vehicleShortText3}</span>
                 </div>
-                {(description != null || description === '') ?
+                {(description != null || description === '') &&
                   <div className="mt-6">
                     <h6 className="mt-5 mb-3 text-lg font-bold lg:mb-5 lg:text-2xl">Descrição</h6>
                     <div
                       className="text-gray-600"
                       dangerouslySetInnerHTML={{ __html: description }} />
                   </div>
-                  : null
                 }
                 <div className="mt-14">
                   <h6 className="mt-5 mb-1.5 text-lg font-bold lg:text-2xl">Vamos fechar negócio?</h6>
@@ -137,8 +134,6 @@ function TruckPage({ data }) {
             </div>
           </div>
         </main>
-      ) : (
-        null
       )}
     </>
   )
