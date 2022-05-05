@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
 import { INDEX_QUERY } from "@/queries/index";
 import Navbar from "@/components/Navbar";
 import FormContact from "@/components/FormContact";

@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
 import client from "@/lib/apollo-client";
 import { INDEX_QUERY } from "@/queries/index";
 import CardMain from "@/components/CardMain";
