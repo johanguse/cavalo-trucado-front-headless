@@ -3,7 +3,7 @@ import { Formik, Form, Field, useField, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import MaskedInput from "react-text-mask";
 
-const FormTruck = () => {
+const FormContact = () => {
 
   const validationSchema = Yup.object({
     name: Yup.string().required("Digite seu nome"),
@@ -127,4 +127,4 @@ const FormTruck = () => {
   );
 };
 
-export default FormTruck;
+export default FormContact;
