@@ -1,23 +1,31 @@
 import Head from "next/head";
 import Image from "next/image";
-import client from "@/lib/apollo-client";
-import { GET_TRUCK } from "@/queries/index";
+import { getTruck } from '@/lib/rest/wordpress';
 import Navbar from "@/components/Navbar";
 import FormTruck from "@/components/FormTruck";
 import IconPointMap from '@/assets/icon_mappoint.svg'
-import { isNonEmptyArray } from "@apollo/client/utilities";
-function TruckPage({ data }) {
-  const slug = data.vehicleBy.slug;
-  const truckName = data.vehicleBy.vehicle_infos.vehicleModelName;
-  const description = data.vehicleBy.vehicle_infos.vehicleLongText;
-  const brandName = data.vehicleBy.brands.nodes[0].name;
-  const showPrice = data.vehicleBy.vehicle_infos.vehicleShowPrice;
-  const price = data.vehicleBy.vehicle_infos.vehiclePrice;
-  const stateShort = data.vehicleBy.vehicle_infos.vehicleState[0];
-  const state = data.vehicleBy.vehicle_infos.vehicleState[1];
-  const year = data.vehicleBy.vehicle_infos.vehicleYear;
-  const yearModel = data.vehicleBy.vehicle_infos.vehicleYearModel;
-  const allPhotos = data.vehicleBy.vehicle_infos.vehiclePhotos;
+import { data } from "autoprefixer";
+
+function TruckPage({ vehicle }) {
+  const vehicleId = vehicle.id;
+  const vehicleUrl = `/${encodeURIComponent(vehicle.slug)}`;
+  const vehicleModelName = vehicle.vehicle_model_name;
+  const km = vehicle.vehicle_km;
+  const brandName = vehicle.brand;
+  const showPrice = vehicle.vehicle_show_price;
+  const price = vehicle.vehicle_price;
+  const stateShort = vehicle.vehicle_state.value;
+  const state = vehicle.vehicle_state.label;
+  const year = vehicle.vehicle_year;
+  const yearModel = vehicle.vehicle_year_model;
+  const vehicleMainPhoto = vehicle.vehicle_main_photo;
+  const description = vehicle.vehicle_long_text;
+  const vehicleShortText1 = vehicle.vehicle_short_text_1;
+  const vehicleShortText2 = vehicle.vehicle_short_text_2;
+  const vehicleShortText3 = vehicle.vehicle_short_text_3;
+  const allPhotos = vehicle.vehicle_photos;
+  
+  const slug = vehicle.slug;
   const currentEncodeURI = encodeURIComponent(process.env.NEXT_PUBLIC_BASEURL + '/' + slug);
 
   return (
@@ -30,19 +38,19 @@ function TruckPage({ data }) {
       <Navbar />
       <div className="w-full bg-gray-50">
         <div className="container px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="py-3 space-y-6 text-xs text-gray-500 md:space-y-0">Caminhoes <span className="mx-2 text-sm">></span> {brandName} {truckName}</div>
+          <div className="py-3 space-y-6 text-xs text-gray-500 md:space-y-0">Caminhoes <span className="mx-2 text-sm">></span> {brandName} {vehicleModelName}</div>
         </div>
       </div>
-      {data && (
+      {vehicle && (
         <main className="w-full mb-5 bg-white border-t border-gray-200">
           <div className="container flex flex-col items-center justify-center flex-1 mx-auto bg-white max-w-7xl sm:px-6 lg:px-0">
             <div className="p-8 space-y-6 md:space-y-0 md:flex md:gap-6 lg:gap-12">
               <div className="md:5/12 lg:w-5/12">
                 <Image
                   className="rounded-lg"
-                  src={data.vehicleBy.vehicle_infos.vehicleMainPhoto.sourceUrl}
-                  alt={truckName + " - " + brandName}
-                  title={truckName + " - " + brandName}
+                  src="http://rest-cavalotrucado.local/wp-content/uploads/2022/01/267515832_4496830350414582_3985255007642656933_n.jpg"
+                  alt={vehicleModelName + " - " + brandName}
+                  title={vehicleModelName + " - " + brandName}
                   width="480"
                   height="560"
                   layout="responsive"
@@ -56,7 +64,7 @@ function TruckPage({ data }) {
                         <div key={index}>
                           <Image
                             className="rounded-lg"
-                            src={photoItem.sourceUrl}
+                            src={photoItem}
                             width="200"
                             height="200"
                           />
@@ -69,14 +77,13 @@ function TruckPage({ data }) {
                 )}
               </div>
               <div className="md:7/12 lg:w-6/12">
-                <h1 className="mb-4 text-2xl font-bold text-gray-900 md:text-4xl">
-                  <span>{brandName}</span>
-                  <span className="ml-2 text-red-700">{truckName}</span>
+                <h1 className="mb-4 text-2xl font-bold text-red-700 md:text-4xl">
+                  <span>{brandName} - {vehicleModelName}</span>
                 </h1>
 
                 <div className="mb-5 text-2xl">
                   {(showPrice != true || showPrice == null) ?
-                    <p>{price.toLocaleString('pt-BR', { minimumFractionDigits: 3, style: 'currency', currency: 'BRL' }) || ''}</p>
+                    <p>R$ {price?.toLocaleString('pt-BR', { minimumFractionDigits: 3, style: 'currency', currency: 'BRL' }) || ''}</p>
                     :
                     <p>Valor sob consulta</p>
                   }
@@ -91,10 +98,16 @@ function TruckPage({ data }) {
                     <p>{state} </p>
                   }
                 </div>
-                <div className="flex flex-row mt-5 text-xl text-gray-500 capitalize">
-                  <span className="mr-2">{data.vehicleBy.vehicle_infos.vehicleShortText1}</span>
-                  <span className="mr-2">{data.vehicleBy.vehicle_infos.vehicleShortText2}</span>
-                  <span className="mr-2">{data.vehicleBy.vehicle_infos.vehicleShortText3}</span>
+                <div className="flex flex-row mt-5 text-base text-gray-500 capitalize">
+                  {(vehicleShortText1 != null || vehicleShortText1 != '') &&
+                  <span className="mr-2">{vehicleShortText1} - </span>
+                  }
+                  {(vehicleShortText2 != null || vehicleShortText2 != '') &&
+                  <span className="mr-2">{vehicleShortText2} - </span>
+                  }
+                  {(vehicleShortText3 != null || vehicleShortText3 != '') &&
+                    <span className="mr-2">{vehicleShortText3}</span>
+                  }
                 </div>
                 {(description != null || description === '') &&
                   <div className="mt-6">
@@ -109,7 +122,7 @@ function TruckPage({ data }) {
                   <p className="mb-8">Envie uma messagem pelo Whatsapp ou um contato via e-mail pelo formulário abaixo:</p>
                   <div className="w-full mb-14">
                     <div className="flex overflow-hidden rounded">
-                      <a href={`https://api.whatsapp.com/send?phone=554796708959&text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20${brandName}%20${truckName}%20Ano%20${year}%20${currentEncodeURI}`}
+                      <a href={`https://api.whatsapp.com/send?phone=554796708959&text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20${brandName}%20${vehicleModelName}%20Ano%20${year}%20${currentEncodeURI}`}
                         target="_blank"
                         className="block px-4 py-3 font-sans text-sm font-bold tracking-wide text-white uppercase transition duration-300 bg-green-700 shadow-border hover:bg-green-600">
                         Chamar no Whatsapp
@@ -144,19 +157,17 @@ function TruckPage({ data }) {
 export async function getServerSideProps(context) {
   const { slug } = context.params;
 
-  const { data } = await client.query({
-    query: GET_TRUCK,
-    variables: {
-      slug: slug
-    },
-  });
+  const vehicle = await getTruck(slug);
+
+  console.log(JSON.stringify(vehicle));
 
   return {
     props: {
-      data
+      vehicle: vehicle.data,
     },
   };
 }
+
 
 
 

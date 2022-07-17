@@ -4,6 +4,6 @@ module.exports = {
     defaultLocale: "pt-BR",
   },
   images: {
-    domains: ['api.cavalotrucado.com', 'api-wp-cavalotrucado.local', 'api-aws.cavalotrucado.com'],
+    domains: ['api.cavalotrucado.com', 'api-wp-cavalotrucado.local', 'rest-cavalotrucado.local'],
   },
 }
