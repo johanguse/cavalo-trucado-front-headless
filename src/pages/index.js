@@ -1,6 +1,5 @@
 import Head from "next/head";
-import client from "@/lib/apollo-client";
-import { INDEX_QUERY } from "@/queries/index";
+import { getRandom4Trucks } from '@/lib/rest/wordpress';
 import CardMain from "@/components/CardMain";
 import Navbar from "@/components/Navbar";
 
@@ -13,21 +12,18 @@ export default function HomePage({ vehicles }) {
         <meta name="keywords" content="compra, venda, caminhões, carretas, cavalos" />
       </Head>
       <Navbar />
-      <CardMain vehicles={vehicles.nodes} />
+      <CardMain vehicles={vehicles} />
     </>
   );
 }
 
 export async function getStaticProps() {
-  const { data } = await client.query({
-    query: INDEX_QUERY
-  });
+  const vehicles = await getRandom4Trucks();
 
   return {
     props: {
-      vehicles: data.vehicles,
+      vehicles,
       revalidate: 7200
-    },
+    }
   };
 }
-
