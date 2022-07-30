@@ -23,15 +23,14 @@ function TruckPage({ vehicle }) {
   const vehicleShortText1 = vehicle.vehicle_short_text_1;
   const vehicleShortText2 = vehicle.vehicle_short_text_2;
   const vehicleShortText3 = vehicle.vehicle_short_text_3;
-  const allPhotos = vehicle.vehicle_photos;
-  
+  const allPhotos = vehicle.photos; 
   const slug = vehicle.slug;
   const currentEncodeURI = encodeURIComponent(process.env.NEXT_PUBLIC_BASEURL + '/' + slug);
 
   return (
     <>
       <Head>
-        <title>Cavalo Trucado - Compra e venda de caminhões</title>
+        <title>Cavalo Trucado Caminhões - {brandName} - {vehicleModelName}</title>
         <meta name="description" content="Especializado na compra e venda de caminhões em todo Brasil." />
         <meta name="keywords" content="compra, venda, caminhões, carretas, cavalos" />
       </Head>
@@ -48,7 +47,7 @@ function TruckPage({ vehicle }) {
               <div className="md:5/12 lg:w-5/12">
                 <Image
                   className="rounded-lg"
-                  src="http://rest-cavalotrucado.local/wp-content/uploads/2022/01/267515832_4496830350414582_3985255007642656933_n.jpg"
+                  src={vehicleMainPhoto}
                   alt={vehicleModelName + " - " + brandName}
                   title={vehicleModelName + " - " + brandName}
                   width="480"
@@ -64,7 +63,7 @@ function TruckPage({ vehicle }) {
                         <div key={index}>
                           <Image
                             className="rounded-lg"
-                            src={photoItem}
+                            src={photoItem.sizes.thumbnail}
                             width="200"
                             height="200"
                           />
