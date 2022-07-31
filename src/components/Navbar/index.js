@@ -1,23 +1,22 @@
-import { useState } from "react";
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Logo from '@/assets/logo_cavalo-trucado.png'
 import WhatsLogo from '@/assets/whatsapp.svg'
 
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const genericHamburgerLine = `h-1 w-6 my-1 rounded-full bg-black transition ease transform duration-300`;
+  const [isOpen, setIsOpen] = useState(false)
+  const genericHamburgerLine = `h-1 w-6 my-1 rounded-full bg-black transition ease transform duration-300`
 
   const handlerMenu = () => {
-
     if (isOpen === true) {
-      document.body.style.overflow = 'unset';
-      return setIsOpen(false);
+      document.body.style.overflow = 'unset'
+      return setIsOpen(false)
     }
 
-    setIsOpen(true);
+    setIsOpen(true)
     if (typeof window != 'undefined' && window.document) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'
     }
   }
 
@@ -28,7 +27,13 @@ function Navbar() {
           <div className="flex items-center space-x-10">
             <Link href="/">
               <a>
-                <Image src={Logo} width="200" height="70" alt="Logo Cavalo Trucado" className="w-8 h-8 mr-2 cursor-pointer" />
+                <Image
+                  src={Logo}
+                  width="200"
+                  height="70"
+                  alt="Logo Cavalo Trucado"
+                  className="w-8 h-8 mr-2 cursor-pointer"
+                />
               </a>
             </Link>
             <nav className="hidden space-x-10 text-sm font-medium md:flex">
@@ -40,16 +45,29 @@ function Navbar() {
           <div className="items-center justify-end hidden sm:flex">
             <div className="flex items-center">
               <div>
-                <Image src={WhatsLogo} width="80" height="35" alt="Logo Cavalo Trucado" className="w-8 h-8 mr-2" />
+                <Image
+                  src={WhatsLogo}
+                  width="80"
+                  height="35"
+                  alt="Logo Cavalo Trucado"
+                  className="w-8 h-8 mr-2"
+                />
               </div>
               <div className="flex flex-col items-center">
                 <a
-                  href="https://wa.me/554796708959" target="_blank"
+                  href="https://wa.me/554796708959"
+                  target="_blank"
                   className="inline-flex items-center text-xs font-bold tracking-widest text-gray-900 uppercase"
                 >
                   Entre em contato
                 </a>
-                <a href="https://wa.me/554796708959" target="_blank" className="text-sm font-medium">47 99670-8959</a>
+                <a
+                  href="https://wa.me/554796708959"
+                  target="_blank"
+                  className="text-sm font-medium"
+                >
+                  47 99670-8959
+                </a>
               </div>
             </div>
           </div>
@@ -60,24 +78,32 @@ function Navbar() {
               onClick={() => handlerMenu()}
             >
               <div
-                className={`${genericHamburgerLine} ${isOpen
-                  ? "rotate-45 translate-y-3 opacity-50 group-hover:opacity-100"
-                  : "opacity-50 group-hover:opacity-100"
-                  }`}
+                className={`${genericHamburgerLine} ${
+                  isOpen
+                    ? 'rotate-45 translate-y-3 opacity-50 group-hover:opacity-100'
+                    : 'opacity-50 group-hover:opacity-100'
+                }`}
               />
               <div
-                className={`${genericHamburgerLine} ${isOpen ? "opacity-0" : "opacity-50 group-hover:opacity-100"
-                  }`}
+                className={`${genericHamburgerLine} ${
+                  isOpen ? 'opacity-0' : 'opacity-50 group-hover:opacity-100'
+                }`}
               />
               <div
-                className={`${genericHamburgerLine} ${isOpen
-                  ? "-rotate-45 -translate-y-3 opacity-50 group-hover:opacity-100"
-                  : "opacity-50 group-hover:opacity-100"
-                  }`}
+                className={`${genericHamburgerLine} ${
+                  isOpen
+                    ? '-rotate-45 -translate-y-3 opacity-50 group-hover:opacity-100'
+                    : 'opacity-50 group-hover:opacity-100'
+                }`}
               />
             </button>
-            <div className={isOpen ? "showMenuNav z-50 top-24 left-0 right-0 h-screen absolute bg-white" : "hideMenuNav hidden"}>
-
+            <div
+              className={
+                isOpen
+                  ? 'showMenuNav z-50 top-24 border-t border-gray-200 left-0 right-0 h-screen absolute bg-white'
+                  : 'hideMenuNav hidden'
+              }
+            >
               <ul className="flex flex-col items-center justify-between min-h-[250px]">
                 <li className="my-8 uppercase border-b border-gray-400">
                   <a href="/about">About</a>
@@ -89,7 +115,6 @@ function Navbar() {
                   <a href="/contact">Contact</a>
                 </li>
               </ul>
-
             </div>
           </div>
         </div>
@@ -98,4 +123,4 @@ function Navbar() {
   )
 }
 
-export default Navbar;
+export default Navbar
