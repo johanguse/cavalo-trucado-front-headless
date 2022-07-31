@@ -201,10 +201,7 @@ function TruckPage({ vehicle }) {
 
 export async function getServerSideProps(context) {
   const { slug } = context.params;
-
   const vehicle = await getTruck(slug);
-
-  console.log(JSON.stringify(vehicle));
 
   return {
     props: {

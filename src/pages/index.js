@@ -1,7 +1,7 @@
-import Head from 'next/head'
-import { getRandom4Trucks } from '@/lib/rest/wordpress'
-import CardMain from '@/components/CardMain'
-import Navbar from '@/components/Navbar'
+import Head from 'next/head';
+import { getRandom4Trucks } from '@/lib/rest/wordpress';
+import CardMain from '@/components/CardMain';
+import Navbar from '@/components/Navbar';
 
 export default function HomePage({ vehicles }) {
   return (
@@ -20,16 +20,16 @@ export default function HomePage({ vehicles }) {
       <Navbar />
       <CardMain vehicles={vehicles} />
     </>
-  )
+  );
 }
 
 export async function getStaticProps() {
-  const vehicles = await getRandom4Trucks()
+  const vehicles = await getRandom4Trucks();
 
   return {
     props: {
       vehicles,
       revalidate: 7200,
     },
-  }
+  };
 }

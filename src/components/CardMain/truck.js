@@ -22,7 +22,7 @@ const Truck = ({ vehicle }) => {
   return (
     <div
       key={vehicleId}
-      class="col-span-1 flex flex-col transition duration-300 bg-white border border-gray-200 rounded-lg hover:shadow-md"
+      className="flex flex-col col-span-1 transition duration-300 bg-white border border-gray-200 rounded-lg hover:shadow-md"
     >
       <div className="p-0">
         <Link href={vehicleUrl}>
@@ -41,7 +41,7 @@ const Truck = ({ vehicle }) => {
           </div>
         </Link>
       </div>
-      <div class="mb-1 px-4 flex flex-wrap">
+      <div className="flex flex-wrap px-4 mb-1">
         <div className="">
           <Link href={vehicleUrl}>
             <h2 className="mb-2 text-2xl cursor-pointer">
@@ -71,12 +71,12 @@ const Truck = ({ vehicle }) => {
         </div>
         <div className="km">km: {km}</div>
       </div>
-      <div class="my-3 text-md px-4 flex flex-wrap justify-start text-xs text-gray-500 capitalize short-descritpions">
+      <div className="flex flex-wrap justify-start px-4 my-3 text-xs text-gray-500 capitalize text-md short-descritpions">
         <span className="mr-2">{vehicleShortText1}</span>
         <span className="mr-2">{vehicleShortText2}</span>
         <span className="mr-2">{vehicleShortText3}</span>
       </div>
-      <div class="flex px-4 flex-wrap mt-auto py-1.5 text-xs border-t place-items-center text-gray-500 border-t-gray-100">
+      <div className="flex px-4 flex-wrap mt-auto py-1.5 text-xs border-t place-items-center text-gray-500 border-t-gray-100">
         <div className="pr-1 icon">
           <Image src={IconPointMap} alt="Localização" width="18" height="22" />
         </div>
