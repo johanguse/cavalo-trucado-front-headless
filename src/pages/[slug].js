@@ -111,8 +111,8 @@ function TruckPage({ vehicle }) {
                             key={photoItem.url}
                             className="rounded-lg"
                             src={photoItem.sizes.thumbnail}
-                            width="200"
-                            height="200"
+                            width="300"
+                            height="300"
                           />
                         </div>
                       );
@@ -129,21 +129,23 @@ function TruckPage({ vehicle }) {
 
                 <div className="mb-5 text-2xl">
                   {showPrice != true || showPrice == null ? (
-                    <p>
+                    <h2>
                       R${' '}
                       {price?.toLocaleString('pt-BR', {
                         minimumFractionDigits: 3,
                         style: 'currency',
                         currency: 'BRL',
                       }) || ''}
-                    </p>
+                    </h2>
                   ) : (
-                    <p>Valor sob consulta</p>
+                    <h2>Valor sob consulta</h2>
                   )}
                 </div>
                 <div className="flex flex-row mr-3 text-gray-500">
                   <div className="mr-6 year">
-                    Ano: {year} {yearModel && ' / ' + yearModel}
+                    <h3>
+                      Ano: {year} {yearModel && ' / ' + yearModel}
+                    </h3>
                   </div>
                   <div className="flex flex-row text-gray-500">
                     <div className="pr-1 icon">
@@ -155,7 +157,7 @@ function TruckPage({ vehicle }) {
                       />
                     </div>
                     {stateShort == null || stateShort == 'NO' ? (
-                      <p>Brasil</p>
+                      <p>Brasil (Consulte localização)</p>
                     ) : (
                       <p>{state}</p>
                     )}
@@ -174,9 +176,9 @@ function TruckPage({ vehicle }) {
                 </div>
                 {(description != null || description === '') && (
                   <div className="mt-6 mb-8">
-                    <h6 className="mt-5 mb-3 text-lg font-bold lg:mb-5 lg:text-2xl">
+                    <h4 className="mt-5 mb-3 text-lg font-bold lg:mb-5 lg:text-2xl">
                       Descrição
-                    </h6>
+                    </h4>
                     <div
                       className="text-gray-600"
                       dangerouslySetInnerHTML={{ __html: description }}
@@ -185,9 +187,9 @@ function TruckPage({ vehicle }) {
                 )}
 
                 <div className="mt-14">
-                  <h6 className="mt-5 mb-1.5 text-lg font-bold lg:text-2xl">
+                  <h5 className="mt-5 mb-1.5 text-lg font-bold lg:text-2xl">
                     Vamos fechar negócio?
-                  </h6>
+                  </h5>
                   <p className="mb-8">
                     Envie uma messagem pelo Whatsapp ou um contato via e-mail
                     pelo formulário abaixo:
