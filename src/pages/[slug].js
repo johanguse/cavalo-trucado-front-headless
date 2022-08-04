@@ -35,7 +35,7 @@ function TruckPage({ vehicle }) {
 
   useMemo(() => {
     if (allPhotos) {
-      const urls = allPhotos.map((photo) => photo.url);
+      const urls = allPhotos.map((photo) => photo.sizes.large);
       setlightBoxSource(urls);
     }
   }, [allPhotos]);
