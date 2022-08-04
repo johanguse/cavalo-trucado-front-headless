@@ -6,4 +6,4 @@ module.exports = {
   images: {
     domains: ['wp-stg.cavalotrucado.com', 'rest-cavalotrucado.local'],
   },
-}
+};
