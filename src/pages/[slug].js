@@ -1,3 +1,5 @@
+import React, { useState, useMemo } from 'react';
+import FsLightbox from 'fslightbox-react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { getTruck } from '@/lib/rest/wordpress';
@@ -23,18 +25,39 @@ function TruckPage({ vehicle }) {
   const vehicleShortText1 = vehicle.vehicle_short_text_1;
   const vehicleShortText2 = vehicle.vehicle_short_text_2;
   const vehicleShortText3 = vehicle.vehicle_short_text_3;
-  const allPhotos = vehicle.photos;
   const slug = vehicle.slug;
   const currentEncodeURI = encodeURIComponent(
     process.env.NEXT_PUBLIC_BASEURL + '/' + slug
   );
 
+  const allPhotos = vehicle.photos;
+  const [lightBoxSource, setlightBoxSource] = useState();
+
+  useMemo(() => {
+    if (allPhotos) {
+      const urls = allPhotos.map((photo) => photo.url);
+      setlightBoxSource(urls);
+    }
+  }, [allPhotos]);
+
+  const [lightboxController, setLightboxController] = useState({
+    toggler: false,
+    slide: 1,
+  });
+
+  function openLightboxOnSlide(number) {
+    setLightboxController({
+      toggler: !lightboxController.toggler,
+      slide: number,
+    });
+  }
+
+  const titlePage = `${vehicleModelName} - ${brandName}`;
+
   return (
     <>
       <Head>
-        <title>
-          Cavalo Trucado Caminhões - {brandName} - {vehicleModelName}
-        </title>
+        <title>Cavalo Trucado Caminhões - {titlePage}</title>
         <meta
           name="description"
           content="Especializado na compra e venda de caminhões em todo Brasil."
@@ -71,10 +94,21 @@ function TruckPage({ vehicle }) {
                 />
                 {allPhotos ? (
                   <div className="flex gap-4 pl-5 mt-4 overflow-x-hidden lg:grid lg:grid-cols-3 lg:px-0">
+                    <FsLightbox
+                      toggler={lightboxController.toggler}
+                      sources={lightBoxSource}
+                      slide={lightboxController.slide}
+                      type="image"
+                    />
                     {allPhotos.map((photoItem, index) => {
                       return (
-                        <div key={index}>
+                        <div
+                          className="cursor-pointer"
+                          key={index}
+                          onClick={() => openLightboxOnSlide(index + 1)}
+                        >
                           <Image
+                            key={photoItem.url}
                             className="rounded-lg"
                             src={photoItem.sizes.thumbnail}
                             width="200"

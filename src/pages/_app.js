@@ -1,7 +1,7 @@
-import Footer from '@/components/Footer'
-import Head from 'next/head'
-import NextNProgress from 'nextjs-progressbar'
-import 'tailwindcss/tailwind.css'
+import Footer from '@/components/Footer';
+import Head from 'next/head';
+import NextNProgress from 'nextjs-progressbar';
+import 'tailwindcss/tailwind.css';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -89,7 +89,7 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
       <Footer />
     </>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;
