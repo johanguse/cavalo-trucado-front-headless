@@ -25,6 +25,11 @@ function TruckPage({ vehicle }) {
   const vehicleShortText1 = vehicle.vehicle_short_text_1;
   const vehicleShortText2 = vehicle.vehicle_short_text_2;
   const vehicleShortText3 = vehicle.vehicle_short_text_3;
+  const vehicleShortTexts = [
+    vehicleShortText1,
+    vehicleShortText2,
+    vehicleShortText3,
+  ];
   const slug = vehicle.slug;
   const currentEncodeURI = encodeURIComponent(
     process.env.NEXT_PUBLIC_BASEURL + '/' + slug
@@ -163,17 +168,27 @@ function TruckPage({ vehicle }) {
                     )}
                   </div>
                 </div>
-                <div className="flex flex-row mt-5 text-base text-gray-500 capitalize">
-                  {(vehicleShortText1 != null || vehicleShortText1 != '') && (
-                    <span className="mr-2">{vehicleShortText1} - </span>
-                  )}
-                  {(vehicleShortText2 != null || vehicleShortText2 != '') && (
-                    <span className="mr-2">{vehicleShortText2} - </span>
-                  )}
-                  {(vehicleShortText3 != null || vehicleShortText3 != '') && (
-                    <span className="mr-2">{vehicleShortText3}</span>
-                  )}
-                </div>
+                {vehicleShortTexts && vehicleShortTexts.length > 0 ? (
+                  <div className="flex flex-row mt-5 text-base text-gray-500 capitalize">
+                    <ul className="flex items-center">
+                      {vehicleShortTexts.map((vehicleShortText, index) => {
+                        if (vehicleShortText == null) {
+                          return null;
+                        }
+                        return (
+                          <li
+                            className={
+                              'after:content-["-"] after:ml-2 mr-2 last:mr-0 last:after:content-[""]'
+                            }
+                            key={index}
+                          >
+                            {vehicleShortText}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                ) : null}
                 {(description != null || description === '') && (
                   <div className="mt-6 mb-8">
                     <h4 className="mt-5 mb-3 text-lg font-bold lg:mb-5 lg:text-2xl">

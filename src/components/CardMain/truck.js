@@ -18,6 +18,11 @@ const Truck = ({ vehicle }) => {
   const vehicleShortText1 = vehicle.vehicle_short_text_1;
   const vehicleShortText2 = vehicle.vehicle_short_text_2;
   const vehicleShortText3 = vehicle.vehicle_short_text_3;
+  const vehicleShortTexts = [
+    vehicleShortText1,
+    vehicleShortText2,
+    vehicleShortText3,
+  ];
 
   return (
     <div
@@ -71,11 +76,27 @@ const Truck = ({ vehicle }) => {
         </div>
         <div className="km">km: {km}</div>
       </div>
-      <div className="flex flex-wrap justify-start px-4 my-3 text-xs text-gray-500 capitalize text-md short-descritpions">
-        <span className="mr-2">{vehicleShortText1}</span>
-        <span className="mr-2">{vehicleShortText2}</span>
-        <span className="mr-2">{vehicleShortText3}</span>
-      </div>
+      {vehicleShortTexts && vehicleShortTexts.length > 0 ? (
+        <div className="flex flex-wrap justify-start px-4 my-3 text-xs text-gray-500 capitalize text-md short-descritpions">
+          <ul className="flex flex-wrap items-center mb-1">
+            {vehicleShortTexts.map((vehicleShortText, index) => {
+              if (vehicleShortText == null) {
+                return null;
+              }
+              return (
+                <li
+                  className={
+                    'after:content-["-"] after:ml-1 mr-1 last:mr-0 last:after:content-[""]'
+                  }
+                  key={index}
+                >
+                  {vehicleShortText}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ) : null}
       <div className="flex px-4 flex-wrap mt-auto py-1.5 text-xs border-t place-items-center text-gray-500 border-t-gray-100">
         <div className="pr-1 icon">
           <Image src={IconPointMap} alt="Localização" width="18" height="22" />
