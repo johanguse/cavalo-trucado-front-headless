@@ -53,11 +53,11 @@ const Page = () => (
 );
 
 const searchClient = algoliasearch(
-  'KPIBSPP2CK',
-  '8c468ce75049176cd39237055ad7565e'
+  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
+  process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY
 );
 
 export default withInstantSearch({
-  indexName: 'wp_posts_vehicle',
+  indexName: process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME,
   searchClient,
 })(Page);
