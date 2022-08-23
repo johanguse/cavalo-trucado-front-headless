@@ -98,7 +98,7 @@ function TruckPage({ vehicle }) {
                   priority={true}
                 />
                 {allPhotos ? (
-                  <div className="flex gap-4 pl-5 mt-4 overflow-x-hidden lg:grid lg:grid-cols-3 lg:px-0">
+                  <div className="grid grid-cols-3 gap-2 mt-4 overflow-x-hidden sm:gap-1 md:gap-2 lg:gap-4">
                     <FsLightbox
                       toggler={lightboxController.toggler}
                       sources={lightBoxSource}
@@ -114,7 +114,7 @@ function TruckPage({ vehicle }) {
                         >
                           <Image
                             key={photoItem.url}
-                            className="rounded-lg"
+                            className="rounded-lg img-responsive"
                             src={photoItem.sizes.thumbnail}
                             width="300"
                             height="300"
