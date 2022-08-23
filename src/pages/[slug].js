@@ -170,7 +170,7 @@ function TruckPage({ vehicle }) {
                 </div>
                 {vehicleShortTexts && vehicleShortTexts.length > 0 ? (
                   <div className="flex flex-row mt-5 text-base text-gray-500 capitalize">
-                    <ul className="flex items-center">
+                    <ul className="flex flex-wrap items-center">
                       {vehicleShortTexts.map((vehicleShortText, index) => {
                         if (vehicleShortText == null) {
                           return null;
