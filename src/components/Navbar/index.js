@@ -1,24 +1,24 @@
-import { useState } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import Logo from '@/assets/logo_cavalo-trucado.png'
-import WhatsLogo from '@/assets/whatsapp.svg'
+import { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import Logo from '@/assets/logo_cavalo-trucado.png';
+import WhatsLogo from '@/assets/whatsapp.svg';
 
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
-  const genericHamburgerLine = `h-1 w-6 my-1 rounded-full bg-black transition ease transform duration-300`
+  const [isOpen, setIsOpen] = useState(false);
+  const genericHamburgerLine = `h-1 w-6 my-1 rounded-full bg-black transition ease transform duration-300`;
 
   const handlerMenu = () => {
     if (isOpen === true) {
-      document.body.style.overflow = 'unset'
-      return setIsOpen(false)
+      document.body.style.overflow = 'unset';
+      return setIsOpen(false);
     }
 
-    setIsOpen(true)
+    setIsOpen(true);
     if (typeof window != 'undefined' && window.document) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = 'hidden';
     }
-  }
+  };
 
   return (
     <header className="w-full border-b border-gray-200">
@@ -37,7 +37,7 @@ function Navbar() {
               </a>
             </Link>
             <nav className="hidden space-x-10 text-sm font-medium md:flex">
-              <Link href="/">Estoque</Link>
+              <Link href="/busca">Busca Avançada</Link>
               <Link href="/contato">Contato</Link>
             </nav>
           </div>
@@ -120,7 +120,7 @@ function Navbar() {
         </div>
       </div>
     </header>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
