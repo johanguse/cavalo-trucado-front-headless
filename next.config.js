@@ -4,6 +4,10 @@ module.exports = {
     defaultLocale: 'pt-BR',
   },
   images: {
-    domains: ['wp-stg.cavalotrucado.com', 'rest-cavalotrucado.local'],
+    domains: [
+      'wp-stg.cavalotrucado.com',
+      'rest-cavalotrucado.local',
+      'media.publit.io',
+    ],
   },
 };
