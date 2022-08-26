@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { getRandom4Trucks } from '@/lib/rest/wordpress';
 import CardMain from '@/components/CardMain';
+import Autocomplete from '@/components/SearchForm/autocomplete';
 import Navbar from '@/components/Navbar';
 
 export default function HomePage({ vehicles }) {
@@ -18,6 +19,7 @@ export default function HomePage({ vehicles }) {
         />
       </Head>
       <Navbar />
+      <Autocomplete detachedMediaQuery="none" openOnFocus />
       <CardMain vehicles={vehicles} />
     </>
   );
