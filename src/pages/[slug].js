@@ -32,7 +32,7 @@ function TruckPage({ vehicle }) {
   ];
   const slug = vehicle.slug;
   const currentEncodeURI = encodeURIComponent(
-    process.env.NEXT_PUBLIC_BASEURL + '/' + slug
+    process.env.NEXT_PUBLIC_URL + '/' + slug
   );
 
   const allPhotos = vehicle.photos;

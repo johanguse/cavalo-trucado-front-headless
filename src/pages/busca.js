@@ -1,4 +1,6 @@
+import { useMemo } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import algoliasearch from 'algoliasearch/lite';
 import { withInstantSearch } from 'next-instantsearch';
@@ -12,28 +14,33 @@ import {
   SearchBox,
 } from 'react-instantsearch-dom';
 
-const HitComponent = ({ hit }) => (
-  <div className="hit">
-    <div>
-      <div className="hit-picture">
-        <img src={`${hit.vehicle_main_photo}`} />
+const HitComponent = ({ hit }) => {
+  const { slug } = hit;
+  return (
+    <Link href={slug}>
+      <div className="grid grid-flow-row gap-4 cursor-pointer md:grid-flow-col hit">
+        <div>
+          <div className="hit-picture">
+            <img src={`${hit.vehicle_main_photo}`} />
+          </div>
+        </div>
+        <div className="hit-content">
+          <div>
+            <Highlight attribute={hit.vehicle_model_name} hit={hit} />
+            <span>{hit.vehicle_model_name}</span>
+            <span>{hit.vehicle_year}</span>
+          </div>
+          <div className="hit-type">
+            <Highlight attribute="type" hit={hit} />
+          </div>
+          <div className="hit-description">
+            <Highlight attribute="description" hit={hit} />
+          </div>
+        </div>
       </div>
-    </div>
-    <div className="hit-content">
-      <div>
-        <Highlight attribute={hit.vehicle_model_name} hit={hit} />
-        <span>{hit.vehicle_model_name}</span>
-        <span>{hit.vehicle_year}</span>
-      </div>
-      <div className="hit-type">
-        <Highlight attribute="type" hit={hit} />
-      </div>
-      <div className="hit-description">
-        <Highlight attribute="description" hit={hit} />
-      </div>
-    </div>
-  </div>
-);
+    </Link>
+  );
+};
 /*
 const Page = () => (
   <>
@@ -101,7 +108,7 @@ export default function ContatoPage({ vehicles }) {
             </div>
             <div className="order-none mx-auto results md:order-last">
               <Hits hitComponent={HitComponent} />
-              <div className="mt-5">
+              <div className="mt-5 pagination">
                 <Pagination />
               </div>
             </div>
