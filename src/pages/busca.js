@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import algoliasearch from 'algoliasearch/lite';
 import {
@@ -17,49 +18,33 @@ const HitComponent = ({ hit }) => {
   const { slug } = hit;
   return (
     <Link href={slug}>
-      <div className="grid grid-flow-row gap-4 cursor-pointer md:grid-flow-col hit">
-        <div>
-          <div className="hit-picture">
-            <img src={`${hit.vehicle_main_photo}`} />
+      <div className="flex flex-col col-span-1 transition duration-300 bg-white border border-gray-200 rounded-lg hit hover:shadow-md">
+        <div className="p-0">
+          <div className="w-full cursor-pointer">
+            {
+              <Image
+                className="rounded-t-lg"
+                src={`${hit.vehicle_main_photo}`}
+                alt={`${hit.brand} - ${hit.vehicle_model_name}`}
+                title={`${hit.brand} - ${hit.vehicle_model_name}`}
+                width="260"
+                height="360"
+                objectFit="cover"
+              />
+            }
           </div>
         </div>
-        <div className="hit-content">
-          <div>
-            <Highlight attribute={hit.vehicle_model_name} hit={hit} />
+
+        <div className="flex flex-wrap px-4 mb-1">
+          <div className="flex flex-col">
             <span>{hit.vehicle_model_name}</span>
             <span>{hit.vehicle_year}</span>
-          </div>
-          <div className="hit-type">
-            <Highlight attribute="type" hit={hit} />
-          </div>
-          <div className="hit-description">
-            <Highlight attribute="description" hit={hit} />
           </div>
         </div>
       </div>
     </Link>
   );
 };
-/*
-const Page = () => (
-  <>
-    <Configure hitsPerPage={12} />
-    <header>
-      <SearchBox />
-    </header>
-    <main>
-      <div className="menu">
-        <RefinementList attribute="categories" />
-      </div>
-      <div className="results">
-        <Hits hitComponent={HitComponent} />
-      </div>
-    </main>
-    <footer>
-      <Pagination />
-    </footer>
-  </>
-);*/
 
 const searchClient = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
@@ -95,29 +80,33 @@ export default function ContatoPage({ vehicles }) {
             </div>
           </div>
         </div>
-        <main className="flex flex-col w-full max-w-4xl px-2 py-8 mx-auto mb-5 space-y-6 sm:px-6 lg:px-8 md:flex-row md:space-x-6 md:space-y-0 sm:p-12">
-          <div className="grid grid-flow-row gap-4 md:grid-flow-col">
-            <div className="search">
-              <div className="text-search">
-                <SearchBox placeholder="Buscar..." />
+        <main className="w-full mb-5 bg-white border-t border-gray-200">
+          <div className="container flex flex-col items-center justify-center flex-1 mx-auto bg-white max-w-7xl sm:px-6 lg:px-0">
+            <div className="grid w-full grid-flow-row gap-4 p-8 space-y-6 md:grid-flow-col md:space-y-0 md:flex md:gap-6 lg:gap-12">
+              <div className="search">
+                <div className="text-search">
+                  <SearchBox placeholder="Buscar..." />
+                </div>
+                <div className="mt-5">
+                  <h3>Marca</h3>
+                  <RefinementList attribute="taxonomies.brand" />
+                </div>
+                <div className="mt-5">
+                  <h3>Ano</h3>
+                  <RefinementList attribute="vehicle_year" />
+                </div>
+                <div className="mt-5">
+                  <h3>Localização</h3>
+                  <RefinementList attribute="vehicle_state.label" />
+                </div>
               </div>
-              <div className="mt-5">
-                <h3>Marca</h3>
-                <RefinementList attribute="taxonomies.brand" />
-              </div>
-              <div className="mt-5">
-                <h3>Ano</h3>
-                <RefinementList attribute="vehicle_year" />
-              </div>
-              <div className="mt-5">
-                <h3>Localização</h3>
-                <RefinementList attribute="vehicle_state.label" />
-              </div>
-            </div>
-            <div className="order-none mx-auto results md:order-last">
-              <Hits hitComponent={HitComponent} />
-              <div className="mt-5 pagination">
-                <Pagination />
+              <div className="order-none w-full mx-auto results md:order-last">
+                <div className="flex flex-col w-full max-w-4xl px-2 py-8 mx-auto mb-5 space-y-6 sm:px-6 lg:px-8 md:flex">
+                  <Hits hitComponent={HitComponent} />
+                </div>
+                <div className="mt-5 pagination">
+                  <Pagination />
+                </div>
               </div>
             </div>
           </div>
