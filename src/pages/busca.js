@@ -3,7 +3,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import algoliasearch from 'algoliasearch/lite';
-import { withInstantSearch } from 'next-instantsearch';
 import {
   InstantSearch,
   Configure,
@@ -12,7 +11,7 @@ import {
   Pagination,
   RefinementList,
   SearchBox,
-} from 'react-instantsearch-dom';
+} from 'react-instantsearch-hooks-web';
 
 const HitComponent = ({ hit }) => {
   const { slug } = hit;
@@ -100,10 +99,19 @@ export default function ContatoPage({ vehicles }) {
           <div className="grid grid-flow-row gap-4 md:grid-flow-col">
             <div className="search">
               <div className="text-search">
-                <SearchBox />
+                <SearchBox placeholder="Buscar..." />
               </div>
               <div className="mt-5">
+                <h3>Marca</h3>
                 <RefinementList attribute="taxonomies.brand" />
+              </div>
+              <div className="mt-5">
+                <h3>Ano</h3>
+                <RefinementList attribute="vehicle_year" />
+              </div>
+              <div className="mt-5">
+                <h3>Localização</h3>
+                <RefinementList attribute="vehicle_state.label" />
               </div>
             </div>
             <div className="order-none mx-auto results md:order-last">

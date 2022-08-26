@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { getTruck } from '@/lib/rest/wordpress';
 import Navbar from '@/components/Navbar';
+import Autocomplete from '@/components/SearchForm/autocomplete';
 import FormTruck from '@/components/FormTruck';
 import IconPointMap from '@/assets/icon_mappoint.svg';
 import { data } from 'autoprefixer';
@@ -73,6 +74,7 @@ function TruckPage({ vehicle }) {
         />
       </Head>
       <Navbar />
+      <Autocomplete detachedMediaQuery="none" openOnFocus />
       <div className="w-full bg-gray-50">
         <div className="container px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="py-3 space-y-6 text-xs text-gray-500 md:space-y-0">

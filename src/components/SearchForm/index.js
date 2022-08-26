@@ -5,7 +5,7 @@ import {
   PoweredBy,
   Panel,
   connectHits,
-} from 'react-instantsearch-dom';
+} from 'react-instantsearch-hooks-web';
 
 export const AlgoliaHitItem = ({ hit }) => {
   const { permalink } = hit;
