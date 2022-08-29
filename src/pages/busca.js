@@ -12,6 +12,7 @@ import {
   Pagination,
   RefinementList,
   SearchBox,
+  PoweredBy,
 } from 'react-instantsearch-hooks-web';
 
 const HitComponent = ({ hit }) => {
@@ -80,12 +81,16 @@ export default function ContatoPage({ vehicles }) {
             </div>
           </div>
         </div>
-        <main className="w-full mb-5 bg-white border-t border-gray-200">
+        <main className="w-full mb-5 bg-white">
           <div className="container flex flex-col items-center justify-center flex-1 mx-auto bg-white max-w-7xl sm:px-6 lg:px-0">
-            <div className="grid w-full grid-flow-row gap-4 p-8 space-y-6 md:grid-flow-col md:space-y-0 md:flex md:gap-6 lg:gap-12">
+            <div className="grid w-full grid-flow-row gap-2 p-8 space-y-6 md:grid-flow-col md:space-y-0 md:flex">
               <div className="search">
                 <div className="text-search">
-                  <SearchBox placeholder="Buscar..." />
+                  <h3>Filtros</h3>
+                  <SearchBox placeholder="Marca, modelo, ano..." />
+                  <div className="w-6/12 powered">
+                    <PoweredBy className="mt-2" />
+                  </div>
                 </div>
                 <div className="mt-5">
                   <h3>Marca</h3>

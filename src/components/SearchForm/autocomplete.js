@@ -56,67 +56,82 @@ const Search = () => {
   );
 
   return (
-    <div className="aa-Autocomplete" {...autocomplete.getRootProps({})}>
-      <form
-        className="aa-Form"
-        {...autocomplete.getFormProps({ inputElement: inputRef.current })}
-      >
-        <input
-          className="block w-full border-none pt-2 pb-1.5 pl-10 pr-3 text-sm placeholder-darkGray bg-lightGray focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:border-purple focus:ring-1 focus:ring-purple sm:text-sm"
-          {...autocomplete.getInputProps({})}
-          placeholder="Buscar..."
-        />
-      </form>
+    <main className="w-full py-5 bg-gray-100">
+      <div className="container flex flex-col items-center justify-center flex-1 mx-auto max-w-7xl sm:px-6 lg:px-0">
+        <div className="w-full px-6" {...autocomplete.getRootProps({})}>
+          <form
+            {...autocomplete.getFormProps({ inputElement: inputRef.current })}
+          >
+            <label class="relative block">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                <svg
+                  class="h-5 w-5 fill-black"
+                  xmlns="http://www.w3.org/2000/svg"
+                  x="0px"
+                  y="0px"
+                  width="30"
+                  height="30"
+                  viewBox="0 0 30 30"
+                >
+                  <path d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z"></path>
+                </svg>
+              </span>
+              <input
+                class="w-full bg-white placeholder:font-italitc border border-gray-300 rounded-full py-2 pl-10 pr-4 focus:ring-red-600/60 focus:border-red-600/60"
+                {...autocomplete.getInputProps({})}
+                placeholder="Busque por marca, modelo, ano..."
+                type="text"
+              />
+            </label>
+          </form>
 
-      <div className="relative aa-Panel" {...autocomplete.getPanelProps({})}>
-        {autocompleteState.isOpen &&
-          autocompleteState.collections.map((collection, index) => {
-            const { source, items } = collection;
+          <div className="relative" {...autocomplete.getPanelProps({})}>
+            {autocompleteState.isOpen &&
+              autocompleteState.collections.map((collection, index) => {
+                const { source, items } = collection;
 
-            return (
-              <div
-                key={`source-${index}`}
-                className="absolute z-50 w-full bg-white border border-gray-300 aa-Source"
-              >
-                {items.length > 0 && (
-                  <ul
-                    className="aa-List custom-shadow"
-                    {...autocomplete.getListProps()}
+                return (
+                  <div
+                    key={`source-${index}`}
+                    className="absolute z-50 w-full bg-white border border-gray-300"
                   >
-                    {items.map((item) => {
-                      return (
-                        <li
-                          key={item.post_id}
-                          className="aa-Item"
-                          {...autocomplete.getItemProps({
-                            item,
-                            source,
-                          })}
-                        >
-                          <Link href={item.slug}>
-                            <div className="block w-full px-5 py-2 cursor-pointer SearchResult hover:bg-lightGray">
-                              <div className="md:shrink-0">
-                                <img
-                                  src={item.vehicle_main_photo}
-                                  width="150"
-                                  className="object-cover w-full h-48 md:h-full md:w-48"
-                                />
-                              </div>
-                              <span className="block text-sm font-bold SearchResult__titlee text-purple">
-                                {item.vehicle_model_name}
-                              </span>
-                            </div>
-                          </Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                )}
-              </div>
-            );
-          })}
+                    {items.length > 0 && (
+                      <ul {...autocomplete.getListProps()}>
+                        {items.map((item) => {
+                          return (
+                            <li
+                              key={item.post_id}
+                              {...autocomplete.getItemProps({
+                                item,
+                                source,
+                              })}
+                            >
+                              <Link href={item.slug}>
+                                <div className="block w-full px-5 py-2 cursor-pointer hover:bg-lightGray">
+                                  <div className="md:shrink-0">
+                                    <img
+                                      src={item.vehicle_main_photo}
+                                      width="150"
+                                      className="object-cover w-full h-48 md:h-full md:w-48"
+                                    />
+                                  </div>
+                                  <span className="block text-sm font-bold text-purple">
+                                    {item.vehicle_model_name}
+                                  </span>
+                                </div>
+                              </Link>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
+                  </div>
+                );
+              })}
+          </div>
+        </div>
       </div>
-    </div>
+    </main>
   );
 };
 
