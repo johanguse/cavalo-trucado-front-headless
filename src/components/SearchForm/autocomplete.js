@@ -57,8 +57,8 @@ const Search = () => {
 
   return (
     <main className="w-full py-5 bg-gray-100">
-      <div className="container flex flex-col items-center justify-center flex-1 mx-auto max-w-7xl sm:px-6 lg:px-0">
-        <div className="w-full px-6" {...autocomplete.getRootProps({})}>
+      <div className="container flex flex-col items-center justify-center flex-1 mx-auto max-w-7xl sm:px-10 lg:px-12">
+        <div className="w-full px-4" {...autocomplete.getRootProps({})}>
           <form
             {...autocomplete.getFormProps({ inputElement: inputRef.current })}
           >
@@ -93,7 +93,7 @@ const Search = () => {
                 return (
                   <div
                     key={`source-${index}`}
-                    className="absolute z-50 w-full bg-white border border-gray-300"
+                    className="absolute z-50 w-full transform -translate-x-1/2 bg-white border border-gray-300 rounded-lg lg:w-11/12 left-1/2"
                   >
                     {items.length > 0 && (
                       <ul {...autocomplete.getListProps()}>
