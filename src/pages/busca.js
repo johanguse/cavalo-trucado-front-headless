@@ -126,7 +126,8 @@ export default function SearchPage({ vehicles }) {
                   <SearchBox
                     placeholder="Marca, modelo, ano..."
                     classNames={{
-                      input: 'pl-10',
+                      input:
+                        'pl-10 w-full placeholder:italic placeholder:text-gray-500 shadow-inner border border-gray-300 rounded-md focus:ring-red-600/60 focus:border-red-600/60',
                     }}
                   />
                   <div className="w-6/12 powered">
@@ -148,6 +149,10 @@ export default function SearchPage({ vehicles }) {
                       resetTitle: 'Clear your search query.',
                       placeholder: 'Search here...',
                     }}
+                    classNames={{
+                      checkbox:
+                        'shadow-inner border border-gray-300 rounded-md',
+                    }}
                   />
                 </div>
                 <div className="mt-5">
@@ -165,6 +170,10 @@ export default function SearchPage({ vehicles }) {
                       resetTitle: 'Clear your search query.',
                       placeholder: 'Search here...',
                     }}
+                    classNames={{
+                      checkbox:
+                        'shadow-inner border border-gray-300 rounded-md',
+                    }}
                   />
                 </div>
                 <div className="mt-5">
@@ -181,6 +190,10 @@ export default function SearchPage({ vehicles }) {
                       submitTitle: 'Submit your search query.',
                       resetTitle: 'Clear your search query.',
                       placeholder: 'Search here...',
+                    }}
+                    classNames={{
+                      checkbox:
+                        'shadow-inner border border-gray-300 rounded-md',
                     }}
                   />
                 </div>

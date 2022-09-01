@@ -77,7 +77,7 @@ const Search = () => {
                 </svg>
               </span>
               <input
-                class="w-full bg-white placeholder:font-italitc border border-gray-300 rounded-full py-2 pl-10 pr-4 focus:ring-red-600/60 focus:border-red-600/60"
+                class="w-full bg-white placeholder:italic placeholder:text-gray-500 shadow-inner border border-gray-300 rounded-full py-2 pl-10 pr-4 focus:ring-red-600/60 focus:border-red-600/60"
                 {...autocomplete.getInputProps({})}
                 placeholder="Busque por marca, modelo, ano..."
                 type="text"
