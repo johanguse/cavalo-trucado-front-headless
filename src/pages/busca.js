@@ -130,8 +130,8 @@ export default function SearchPage({ vehicles }) {
                         'pl-10 w-full placeholder:italic placeholder:text-gray-500 shadow-inner border border-gray-300 rounded-md focus:ring-red-600/60 focus:border-red-600/60',
                     }}
                   />
-                  <div className="w-6/12 powered">
-                    <PoweredBy className="mt-2" />
+                  <div className="mt-2 powered">
+                    <PoweredBy />
                   </div>
                 </div>
                 <div className="mt-5">
