@@ -37,8 +37,12 @@ function Navbar() {
               </a>
             </Link>
             <nav className="hidden space-x-10 text-sm font-medium md:flex">
-              <Link href="/busca">Busca Avançada</Link>
-              <Link href="/contato">Contato</Link>
+              <Link href="/busca">
+                <a className="hover:text-red-600">Busca Avançada</a>
+              </Link>
+              <Link href="/contato">
+                <a className="hover:text-red-600">Contato</a>
+              </Link>
             </nav>
           </div>
 

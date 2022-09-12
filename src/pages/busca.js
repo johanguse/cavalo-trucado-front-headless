@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
+import Breadcrumb from '@/components/Breadcrumb';
 import algoliasearch from 'algoliasearch/lite';
 import {
   InstantSearch,
@@ -82,6 +83,12 @@ const searchClient = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY
 );
 
+const BreadcrumbData = [
+  {
+    title: 'Busca',
+  },
+];
+
 export default function SearchPage({ vehicles }) {
   return (
     <>
@@ -91,9 +98,7 @@ export default function SearchPage({ vehicles }) {
       >
         <Configure hitsPerPage={12} />
         <Head>
-          <title>
-            Cavalo Trucado - Compra e venda de caminhões - Entre em Contato
-          </title>
+          <title>Cavalo Trucado - Compra e venda de caminhões - Busca</title>
           <meta
             name="description"
             content="Especializado na compra e venda de caminhões em todo Brasil."
@@ -110,13 +115,13 @@ export default function SearchPage({ vehicles }) {
           ></link>
         </Head>
         <Navbar />
-        <div className="w-full border-b bg-gray-50 border-t-gray-200">
-          <div className="container px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div className="py-3 space-y-6 text-xs text-gray-500 md:space-y-0">
-              Busca
-            </div>
-          </div>
-        </div>
+        <Breadcrumb
+          BreadcrumbData={[
+            {
+              title: 'Busca',
+            },
+          ]}
+        />
         <main className="w-full mb-5 bg-white">
           <div className="container flex flex-col items-center justify-center flex-1 mx-auto bg-white max-w-7xl sm:px-6 lg:px-0">
             <div className="grid w-full grid-flow-row gap-2 p-8 space-y-6 md:grid-flow-col md:space-y-0 md:flex">
