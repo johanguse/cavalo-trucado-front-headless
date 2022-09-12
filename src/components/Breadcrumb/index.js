@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
 const Breadcrumb = ({ BreadcrumbData }) => {
-  console.log(BreadcrumbData);
   return (
     <nav
       aria-label="Breadcrumb"
