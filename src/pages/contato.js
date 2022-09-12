@@ -1,8 +1,9 @@
-import Head from 'next/head'
-import Navbar from '@/components/Navbar'
-import FormContact from '@/components/FormContact'
+import Head from 'next/head';
+import Navbar from '@/components/Navbar';
+import Breadcrumb from '@/components/Breadcrumb';
+import FormContact from '@/components/FormContact';
 
-export default function ContatoPage({ vehicles }) {
+export default function ContatoPage() {
   return (
     <>
       <Head>
@@ -19,13 +20,13 @@ export default function ContatoPage({ vehicles }) {
         />
       </Head>
       <Navbar />
-      <div className="w-full border-b bg-gray-50 border-t-gray-200">
-        <div className="container px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="py-3 space-y-6 text-xs text-gray-500 md:space-y-0">
-            Contato
-          </div>
-        </div>
-      </div>
+      <Breadcrumb
+        BreadcrumbData={[
+          {
+            title: 'Contato',
+          },
+        ]}
+      />
       <main className="flex flex-col w-full max-w-4xl px-2 py-8 mx-auto mb-5 space-y-6 sm:px-6 lg:px-8 md:flex-row md:space-x-6 md:space-y-0 sm:p-12">
         <div className="w-full">
           <div className="mb-10 text-center">
@@ -42,5 +43,5 @@ export default function ContatoPage({ vehicles }) {
         </div>
       </main>
     </>
-  )
+  );
 }

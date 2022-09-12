@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { getTruck } from '@/lib/rest/wordpress';
 import Navbar from '@/components/Navbar';
+import Breadcrumb from '@/components/Breadcrumb';
 import FormTruck from '@/components/FormTruck';
 import IconPointMap from '@/assets/icon_mappoint.svg';
 import { data } from 'autoprefixer';
@@ -73,14 +74,17 @@ function TruckPage({ vehicle }) {
         />
       </Head>
       <Navbar />
-      <div className="w-full border-b border-gray-200 bg-gray-50">
-        <div className="container px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="py-3 space-y-6 text-xs text-gray-500 md:space-y-0">
-            Caminhoes <span className="mx-2 text-sm">></span> {brandName}{' '}
-            {vehicleModelName}
-          </div>
-        </div>
-      </div>
+      <Breadcrumb
+        BreadcrumbData={[
+          {
+            title: 'Caminhões',
+            href: '/busca',
+          },
+          {
+            title: titlePage,
+          },
+        ]}
+      />
       {vehicle && (
         <main className="w-full mb-5 bg-white">
           <div className="container flex flex-col items-center justify-center flex-1 mx-auto bg-white max-w-7xl sm:px-6 lg:px-0">
