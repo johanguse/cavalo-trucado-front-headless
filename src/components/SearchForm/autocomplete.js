@@ -56,7 +56,7 @@ const Search = () => {
   );
 
   return (
-    <main className="w-full py-5 bg-gray-100">
+    <div className="w-full py-5 bg-gray-100">
       <div className="container flex flex-col items-center justify-center flex-1 mx-auto max-w-7xl sm:px-10 lg:px-12">
         <div className="w-full px-4" {...autocomplete.getRootProps({})}>
           <form
@@ -131,7 +131,7 @@ const Search = () => {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 
