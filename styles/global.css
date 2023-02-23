@@ -1,0 +1,28 @@
+.bus_ordered_list ol {
+  display: flex !important;
+  flex-wrap: wrap;
+}
+.bus_ordered_list ol li {
+  flex: 0 0 33.3%;
+  padding: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 20px;
+}
+.bus_ordered_list .ais-InfiniteHits-item {
+  box-shadow: none;
+}
+.cursor-pointer > span {
+  width: 100% !important;
+}
+
+@media screen and (max-width: 992px) {
+  .bus_ordered_list ol li {
+    flex: 0 0 49%;
+  }
+}
+@media screen and (max-width: 778px) {
+  .bus_ordered_list ol {
+    display: block !important;
+  }
+}
