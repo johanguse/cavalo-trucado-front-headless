@@ -16,12 +16,13 @@ import {
   PoweredBy,
   useInstantSearch,
 } from 'react-instantsearch-hooks-web';
+import IconPointMap from '@/assets/icon_mappoint.svg';
 
 const HitComponent = ({ hit }) => {
   const { slug } = hit;
   return (
     <Link href={slug}>
-      <div className="flex flex-col col-span-1 transition duration-300 bg-white border border-gray-200 rounded-lg hit hover:shadow-md">
+      <div className="flex flex-col col-span-1 transition w-full duration-300 bg-white border border-gray-200 rounded-lg hit hover:shadow-md">
         <div className="p-0">
           <div className="w-full cursor-pointer">
             {
@@ -38,10 +39,33 @@ const HitComponent = ({ hit }) => {
           </div>
         </div>
 
-        <div className="flex flex-wrap px-4 mb-1">
+        <div className="flex flex-wrap px-4 py-2 mb-1 justify-between">
           <div className="flex flex-col">
-            <span>{hit.vehicle_model_name}</span>
-            <span>{hit.vehicle_year}</span>
+            <h5 className="font-semibold text-lg mb-1">
+              {hit.brand}{' '}
+              <span className="text-red-700">{hit.vehicle_model_name}</span>
+            </h5>
+            <p className=" text-[#3c3c3c] mb-3 font-semibold">
+              R$ {hit.vehicle_price}
+            </p>
+            {/* <span>{hit.vehicle_model_name}</span> */}
+
+            <span className="text-xs text-gray-700">
+              Ano: {hit.vehicle_year}
+            </span>
+            <div className="flex items-center mt-1">
+              <div className="pr-1 icon">
+                <Image
+                  src={IconPointMap}
+                  alt="Localização"
+                  width="18"
+                  height="22"
+                />
+              </div>
+              <span className="text-xs text-gray-700">
+                {hit.vehicle_state.label}
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -200,8 +224,8 @@ export default function SearchPage({ vehicles }) {
                 </div>
               </div>
               <NoResultsBoundary fallback={<NoResults />}>
-                <div className="order-none w-full mx-auto results md:order-last">
-                  <div className="flex flex-col w-full max-w-4xl px-2 py-8 mx-auto mb-5 space-y-6 sm:px-6 lg:px-8 md:flex">
+                <div className="order-none w-full mx-auto results md:order-last md:pl-[15px] md:pt-[15px]">
+                  <div className="flex flex-col w-full px-2 pb-8 mx-auto mb-5 space-y-6 sm:px-6 lg:px-0 md:flex bus_ordered_list">
                     <InfiniteHits
                       showPrevious={false}
                       hitComponent={HitComponent}
