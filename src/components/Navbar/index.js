@@ -25,8 +25,8 @@ function Navbar() {
       <div className="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-3">
           <div className="flex items-center space-x-10">
-            <Link href="/">
-              <a>
+            <Link href="/" aria-label="Página inicial">
+              <a aria-label="Página inicial">
                 <Image
                   src={Logo}
                   width="200"
@@ -78,6 +78,7 @@ function Navbar() {
 
           <div className="md:hidden">
             <button
+              aria-label="Open Menu"
               className="flex flex-col items-center justify-center w-12 h-12 border-2 border-red-300 rounded group"
               onClick={() => handlerMenu()}
             >
