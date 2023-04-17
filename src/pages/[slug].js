@@ -58,16 +58,15 @@ function TruckPage({ vehicle }) {
     });
   }
 
-  const titlePage = `${vehicleModelName} - ${brandName}`;
+  const titlePage = `${vehicleModelName} - ${brandName} | Cavalo Trucado Caminhões`;
+  const descriptionPage = `${brandName} - ${vehicleModelName} - ${year} - ${state}`;
+  const breadcrumbText = `${brandName} - ${vehicleModelName}`;
 
   return (
     <>
       <Head>
-        <title>Cavalo Trucado Caminhões - {titlePage}</title>
-        <meta
-          name="description"
-          content="Especializado na compra e venda de caminhões em todo Brasil."
-        />
+        <title>{titlePage}</title>
+        <meta name="description" content={descriptionPage} />
         <meta
           name="keywords"
           content="compra, venda, caminhões, carretas, cavalos"
@@ -81,7 +80,7 @@ function TruckPage({ vehicle }) {
             href: '/busca',
           },
           {
-            title: titlePage,
+            title: breadcrumbText,
           },
         ]}
       />

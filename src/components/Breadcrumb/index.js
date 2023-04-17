@@ -9,8 +9,11 @@ const Breadcrumb = ({ BreadcrumbData }) => {
       <div className="container p-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <ol className="flex items-stretch gap-2 text-sm list-none">
           <li className="flex items-center gap-2">
-            <Link href="/">
-              <a className="flex max-w-[20ch] items-center gap-1 truncate whitespace-nowrap text-xs text-gray-500 transition-colors hover:text-red-600">
+            <Link href="/" aria-label="Página inicial">
+              <a
+                aria-label="Página inicial"
+                className="flex max-w-[20ch] items-center gap-1 truncate whitespace-nowrap text-xs text-gray-500 transition-colors hover:text-red-600"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-5 h-5"
@@ -19,11 +22,7 @@ const Breadcrumb = ({ BreadcrumbData }) => {
                   stroke="currentColor"
                   strokeWidth="2"
                   aria-hidden="true"
-                  aria-labelledby="title-01 description-01"
-                  role="link"
                 >
-                  <title id="title-01">Pagina inicial</title>
-                  <desc id="description-01">Link para pagina inicial</desc>
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -40,14 +39,8 @@ const Breadcrumb = ({ BreadcrumbData }) => {
               stroke="currentColor"
               strokeWidth="2"
               aria-hidden="true"
-              aria-labelledby="title-02 description-02"
               role="graphics-symbol"
             >
-              <title id="title-02">Arrow</title>
-              <desc id="description-02">
-                Arrow icon that points to the next page in big screen resolution
-                sizes and previous page in small screen resolution sizes.
-              </desc>
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -74,8 +67,8 @@ const Breadcrumb = ({ BreadcrumbData }) => {
                   <span
                     className={`flex max-w-[20ch] items-center gap-1 truncate whitespace-nowrap text-xs transition-colors ${
                       index === BreadcrumbData.length - 1
-                        ? 'text-slate-400'
-                        : 'text-gray-500 hover:text-red-600'
+                        ? 'text-gray-500'
+                        : 'text-gray-600 hover:text-red-600'
                     }`}
                   >
                     {breadcrumb.title}
