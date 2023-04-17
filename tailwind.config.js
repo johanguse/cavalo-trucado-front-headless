@@ -1,5 +1,5 @@
-const defaultTheme = require("tailwindcss/defaultTheme")
-const colors = require('tailwindcss/colors')
+const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
 
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
@@ -7,15 +7,15 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", ...defaultTheme.fontFamily.sans],
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
       screens: {
-        standalone: { raw: '(display-mode: standalone)' }
+        standalone: { raw: '(display-mode: standalone)' },
       },
       colors: {
         gray: colors.neutral,
         primary: colors.blue,
-        secondary: colors.indigo
+        secondary: colors.indigo,
       },
       typography: (theme) => ({
         DEFAULT: {
@@ -27,34 +27,34 @@ module.exports = {
               textDecorationColor: theme('colors.teal.500'),
               textUnderlineOffset: '3px',
               textDecorationStyle: 'decoration-solid',
-              code: { color: theme('colors.blue.400') }
+              code: { color: theme('colors.blue.400') },
             },
             blockquote: {
               borderLeftColor: theme('colors.teal.500'),
               backgroundColor: theme('colors.gray.50'),
-              color: theme('colors.gray.700')
+              color: theme('colors.gray.700'),
             },
             'h1,h2,h3,h4': {
-              color: theme('colors.gray.900')
+              color: theme('colors.gray.900'),
             },
             hr: { borderColor: theme('colors.gray.700') },
             strong: { color: theme('colors.gray.700') },
             thead: {
               color: theme('colors.gray.100'),
-              borderBottomColor: theme('colors.gray.600')
+              borderBottomColor: theme('colors.gray.600'),
             },
             tbody: {
               tr: {
-                borderBottomColor: theme('colors.gray.700')
-              }
+                borderBottomColor: theme('colors.gray.700'),
+              },
             },
             code: { color: theme('colors.indigo.500') },
             'blockquote p:first-of-type::before': false,
             'blockquote p:last-of-type::after': false,
             pre: {
-              backgroundColor: theme('colors.gray.100')
-            }
-          }
+              backgroundColor: theme('colors.gray.100'),
+            },
+          },
         },
         dark: {
           css: {
@@ -62,44 +62,40 @@ module.exports = {
             a: {
               color: theme('colors.slate.50'),
               '&:hover': {
-                color: theme('colors.teal.500')
+                color: theme('colors.teal.500'),
               },
               textDecorationColor: theme('colors.teal.400'),
               textUnderlineOffset: '3px',
               textDecorationStyle: 'decoration-solid',
-              code: { color: theme('colors.blue.400') }
+              code: { color: theme('colors.blue.400') },
             },
             blockquote: {
               borderLeftColor: theme('colors.teal.500'),
               backgroundColor: theme('colors.slate.800'),
-              color: theme('colors.gray.200')
+              color: theme('colors.gray.200'),
             },
             'h1,h2,h3,h4': {
-              color: theme('colors.white')
+              color: theme('colors.white'),
             },
             hr: { borderColor: theme('colors.gray.600') },
             strong: { color: theme('colors.gray.100') },
             thead: {
               color: theme('colors.gray.100'),
-              borderBottomColor: theme('colors.gray.600')
+              borderBottomColor: theme('colors.gray.600'),
             },
             tbody: {
               tr: {
-                borderBottomColor: theme('colors.gray.700')
-              }
+                borderBottomColor: theme('colors.gray.700'),
+              },
             },
             code: { color: theme('colors.indigo.200') },
             pre: {
-              backgroundColor: theme('colors.primary.800')
-            }
-          }
-        }
-      })
-    }
+              backgroundColor: theme('colors.primary.800'),
+            },
+          },
+        },
+      }),
+    },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/line-clamp'),
-    require('@tailwindcss/forms')
-  ]
+  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],
 };
