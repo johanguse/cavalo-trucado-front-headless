@@ -4,6 +4,8 @@ import Link from 'next/link';
 import algoliasearch from 'algoliasearch/lite';
 import { createAutocomplete } from '@algolia/autocomplete-core';
 import { getAlgoliaResults } from '@algolia/autocomplete-preset-algolia';
+import Image from 'next/image';
+import IconPointMap from '@/assets/icon_mappoint.svg';
 
 const searchClient = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
@@ -93,8 +95,11 @@ const Search = () => {
                 return (
                   <div
                     key={`source-${index}`}
-                    className="absolute z-50 w-full transform -translate-x-1/2 bg-white border border-gray-300 rounded-lg lg:w-11/12 left-1/2"
+                    className="absolute z-50 w-full transform -translate-x-1/2 bg-white border border-gray-300 rounded-xl lg:w-full left-1/2"
                   >
+                    <h6 className="p-2 mt-2 mb-1 ml-2 mr-2 text-xs font-extrabold uppercase bg-gray-100">
+                      Item Matches
+                    </h6>
                     {items.length > 0 && (
                       <ul {...autocomplete.getListProps()}>
                         {items.map((item) => {
@@ -107,17 +112,40 @@ const Search = () => {
                               })}
                             >
                               <Link href={item.slug}>
-                                <div className="block w-full px-5 py-2 cursor-pointer hover:bg-lightGray">
+                                <div className="flex items-center w-full px-5 py-2 cursor-pointer hover:bg-lightGray border-b-[1px] border-solid border-stone-300 mb-3">
                                   <div className="md:shrink-0">
                                     <img
                                       src={item.vehicle_main_photo}
                                       width="150"
-                                      className="object-cover w-full h-48 md:h-full md:w-48"
+                                      className="object-cover w-full h-48 mt-1 rounded-lg md:h-full md:w-40"
                                     />
                                   </div>
-                                  <span className="block text-sm font-bold text-purple">
-                                    {item.vehicle_model_name}
-                                  </span>
+                                  <div className="ml-4">
+                                    <span className="block text-lg font-bold text-indigo-700">
+                                      {item.vehicle_model_name}
+                                    </span>
+                                    <h6 className="text-sm font-bold text-[#3c3c3c] mt-3">
+                                      {item.vehicle_price
+                                        ? `$${item.vehicle_price}`
+                                        : null}
+                                    </h6>
+                                    <div className="mt-4 text-xs text-gray-700">
+                                      <p className="mb-1">
+                                        Ano: {item.vehicle_year}
+                                      </p>
+                                      <div className="flex items-center">
+                                        <div className="pr-1 icon">
+                                          <Image
+                                            src={IconPointMap}
+                                            alt="Localização"
+                                            width="18"
+                                            height="22"
+                                          />
+                                        </div>
+                                        <p>{item.vehicle_state.label}</p>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
                               </Link>
                             </li>

@@ -10,4 +10,7 @@ module.exports = {
       'media.publit.io',
     ],
   },
+  experimental: {
+    forceSwcTransforms: true,
+  },
 };
